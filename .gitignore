@@ -3,3 +3,5 @@
 Homestead.yaml
 .env
 /misc
+/database/seeds/data/phys.csv
+/database/seeds/data/find-a-do-liz.csv
