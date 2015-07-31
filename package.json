@@ -1,10 +1,28 @@
 {
-  "private": true,
-  "devDependencies": {
-    "gulp": "^3.8.8"
+  "name": "lookup",
+  "version": "0.0.0",
+  "description": "* Fri Jul 31 11:50:51 2015 CDT      * keeping field names the same but for one:         * change id to aoa_mem_id",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "tests"
   },
   "dependencies": {
-    "laravel-elixir": "^2.0.0",
-    "bootstrap-sass": "^3.0.0"
-  }
+    "gulp": "^3.9.0",
+    "laravel-elixir": "^2.3.13",
+    "bootstrap-sass": "^3.3.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pjsinco/lookup.git"
+  },
+  "author": "pjs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pjsinco/lookup/issues"
+  },
+  "homepage": "https://github.com/pjsinco/lookup"
 }

@@ -55,4 +55,6 @@
 * Component design inspiration: [Call to Idea](http://www.calltoidea.com/index.php)
 
 #####Fri Jul 31 10:07:57 2015 CDT
-
+* Blog: [Calculate Distance by Latitude and Longitude using PHP](http://www.geodatasource.com/developers/php)
+* Blog: [Calculating distances from latitude and longitude (PHP)](http://sniptools.com/latitudeLongitude.php)
+* Blog: [Distance Formula in PHP – Calculate distance between two points](http://www.techrecite.com/distance-formula-in-php-calculate-distance-between-two-points-programmatically/)
