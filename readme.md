@@ -8,6 +8,8 @@
 
 #Geolocation
 * Service: [MaxMind](https://www.maxmind.com/en/home)
+* Service: [Geocodio](http://geocod.io/)
+    * for looking up longitude, latitude based on address
 
 #Autocomplete
 * jsfiddle: [example in vanilla js](http://jsfiddle.net/e6220t92/2/)
