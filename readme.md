@@ -1,27 +1,55 @@
-## Laravel PHP Framework
+#dboFindaDO
+* Fri Jul 31 11:50:51 2015 CDT 
+    * keeping field names the same but for one:
+        * change id to aoa_mem_id
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+#Geolocation
+* Service: [MaxMind](https://www.maxmind.com/en/home)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+#Autocomplete
+* jsfiddle: [example in vanilla js](http://jsfiddle.net/e6220t92/2/)
+    * Stack: [Implementing a AutoComplete dropdown in plain JavaScript](http://stackoverflow.com/questions/28842355/implementing-a-autocomplete-dropdown-in-plain-javascript)
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+* Library: [Awesomplete](http://leaverou.github.io/awesomplete/)
+    * [Github](https://github.com/LeaVerou/awesomplete)
 
-## Official Documentation
+* Library: [Typeahead](https://github.com/twitter/typeahead.js/)
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+#Mapping
+* Library: [Mapbox](https://www.mapbox.com/)
+* Library: [Leaflet](http://leafletjs.com/)
+    * [Github](https://github.com/Leaflet/Leaflet/)
 
-## Contributing
+#####Thu May  7 16:50:40 2015 CDT
+* [Why I Decided To Embrace Laravel](http://www.toptal.com/laravel/why-i-decided-to-embrace-laravel)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+#####Fri May 22 08:41:08 2015 CDT
+* Codrops: [Inspiration for Text Styles and Hover Effects](http://tympanus.net/codrops/2015/05/13/inspiration-for-text-styles-and-hover-effects/)
 
-## Security Vulnerabilities
+#####Wed Jun 10 06:42:30 2015 CDT
+* ["Build Unique Search Experiences"](http://www.algolia.com/)
+    * "Hosted Search API that delivers instant and relevant results from the first keystroke"
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+#####Fri Jun 12 10:33:47 2015 CDT
+    
+#####Github: [JSON Server](https://github.com/typicode/json-server)
+"Get a full fake REST API with zero coding in less than 30 seconds (seriously)"
 
-### License
+#####Thu Jul  2 09:30:51 2015 EDT
+#####Checkbox Trickery with CSS
+* [Blog post](http://codersblock.com/blog/checkbox-trickery-with-css/?utm_source=html5weekly&utm_medium=email)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+#####Wed Jul 22 08:27:34 2015 CDT
+* Handpicked code snippets you can use in your web projects. Find web design inspiration with code samples: [codemyui](http://codemyui.com/)
+
+#####Thu Jul 30 16:09:49 2015 CDT
+* [Zip Code DB](http://www.unitedstateszipcodes.org/zip-code-database/)
+    * using this one to start
+    * lat, lon not precise
+* [http://federalgovernmentzipcodes.us/](http://federalgovernmentzipcodes.us/)
+* [Americas Open Geocode (AOG) database](http://www.opengeocode.org/download.php#cityzip)
+
+* Component design inspiration: [Call to Idea](http://www.calltoidea.com/index.php)
+
+#####Fri Jul 31 10:07:57 2015 CDT
+

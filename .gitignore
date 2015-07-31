@@ -4,5 +4,6 @@ Homestead.yaml
 .env
 /misc
 /database/seeds/data/phys.csv
-/database/seeds/data/find-a-do-liz.csv
 /database/seeds/data/zips-imprecise-lat-lon.csv
+/database/seeds/data/cityzip.csv
+/database/seeds/data/finda*.csv

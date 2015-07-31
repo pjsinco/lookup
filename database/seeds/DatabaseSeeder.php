@@ -15,9 +15,13 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
         $this->call('SpecialtyTableSeeder');
+        $this->call('LocationTableSeeder');
+        $this->call('PhysicianTableSeeder');
 
         // $this->call(UserTableSeeder::class);
 
         Model::reguard();
     }
+
+
 }

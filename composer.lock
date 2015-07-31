@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e014e2be4a8b282fde042eea170d7b8b",
+    "hash": "ac63b6a6b4bce8b092764fedaf24e51b",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1704,6 +1704,39 @@
                 "dump"
             ],
             "time": "2015-07-01 12:07:40"
+        },
+        {
+            "name": "turkeyfried/us-state-lists",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TurkeyFried/us-state-lists.git",
+                "reference": "3c36bb81d97c2acface8405de3be37ea897a8958"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TurkeyFried/us-state-lists/zipball/3c36bb81d97c2acface8405de3be37ea897a8958",
+                "reference": "3c36bb81d97c2acface8405de3be37ea897a8958",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "usStateCodes\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Luis Pabon",
+                    "email": "turkeyfried@gmail.com"
+                }
+            ],
+            "description": "PHP Class that contains state codes",
+            "time": "2014-12-30 22:43:45"
         },
         {
             "name": "vlucas/phpdotenv",

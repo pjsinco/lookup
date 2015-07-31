@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class SpecialtyTableSeeder extends Seeder
+class LocationTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,11 +11,10 @@ class SpecialtyTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('specialties')->truncate();
+        DB::table('locations')->truncate();
 
-        $specialties = $this->getCsv('specialty-code-and-full-name.csv');
-
-        $this->seedTable($specialties);
+        $locations = $this->getCsv('cityzip.csv');
+        $this->seedTable($locations);
     }
 
     /**
@@ -27,10 +26,12 @@ class SpecialtyTableSeeder extends Seeder
     private function seedTable($data)
     {
         foreach ($data as $lineIndex => $row) {
-            $specialty = App\Specialty::create([
-                'code' => $row[0],
-                'full' => $row[1],
-                'aoa_id' => $row[2],
+            $specialty = App\Location::create([
+                'state' => $row[0],
+                'city' => $row[1],
+                'zip' => $row[2],
+                'lat' => $row[3],
+                'lon' => $row[4],
             ]);
         }
     }
@@ -50,5 +51,4 @@ class SpecialtyTableSeeder extends Seeder
 
         return $csv->query();
     }
-
 }
