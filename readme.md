@@ -60,3 +60,6 @@
 * Blog: [Calculate Distance by Latitude and Longitude using PHP](http://www.geodatasource.com/developers/php)
 * Blog: [Calculating distances from latitude and longitude (PHP)](http://sniptools.com/latitudeLongitude.php)
 * Blog: [Distance Formula in PHP – Calculate distance between two points](http://www.techrecite.com/distance-formula-in-php-calculate-distance-between-two-points-programmatically/)
+
+#####Mon Aug  3 06:24:31 2015 CDT
+* Blog: [Learn to send emails using Gmail and Sendgrid in Laravel 5](http://learninglaravel.net/learn-to-send-emails-using-gmail-and-sendgrid-in-laravel-5)
