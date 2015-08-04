@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 class FindADOController extends Controller
 {
+
     public function index()
     {
         $location = \App\Location::random();
@@ -16,4 +17,5 @@ class FindADOController extends Controller
         return view('findado.index')
             ->with('loc', $location);
     }
+
 }

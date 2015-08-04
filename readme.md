@@ -63,3 +63,6 @@
 
 #####Mon Aug  3 06:24:31 2015 CDT
 * Blog: [Learn to send emails using Gmail and Sendgrid in Laravel 5](http://learninglaravel.net/learn-to-send-emails-using-gmail-and-sendgrid-in-laravel-5)
+
+#####Tue Aug  4 12:46:07 2015 CDT
+* WPBeginner: [How to Display a User’s IP Address in WordPress](http://www.wpbeginner.com/wp-tutorials/how-to-display-a-users-ip-address-in-wordpress/)

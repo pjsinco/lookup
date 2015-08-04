@@ -31,3 +31,19 @@
     </div>
 </div> <!-- .container -->
 @stop
+
+@section('script')
+<script type="text/javascript" charset="utf-8">
+
+    $(document).ready(function() {
+
+        $('#location').load('/location/random', function(responseText, textStatus, jqXHR) {
+            var json = JSON.parse(responseText);
+            $(this).val(json[0].city + ', ' + json[0].state + ' ' + json[0].zip );
+        })
+
+    });
+
+    
+</script>
+@stop

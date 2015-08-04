@@ -12,7 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('findado.index');
 });
+
+Route::get('/location/random', 'LocationController@random');
 
 Route::get('/findado', 'FindADOController@index');
