@@ -1,0 +1,21 @@
+{
+  "name": "lookup",
+  "version": "0.0.1",
+  "homepage": "https://github.com/pjsinco/lookup",
+  "authors": [
+    "pjsinco <psinco@osteopathic.org>"
+  ],
+  "description": "API for Find a DO",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/bower_dl",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "typeahead.js": "~0.11.1"
+  }
+}

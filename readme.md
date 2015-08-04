@@ -49,7 +49,7 @@
 
 #####Thu Jul 30 16:09:49 2015 CDT
 * [Zip Code DB](http://www.unitedstateszipcodes.org/zip-code-database/)
-    * using this one to start
+    * ~~using this one to start~~
     * lat, lon not precise
 * [http://federalgovernmentzipcodes.us/](http://federalgovernmentzipcodes.us/)
 * [Americas Open Geocode (AOG) database](http://www.opengeocode.org/download.php#cityzip)
@@ -67,4 +67,39 @@
 #####Tue Aug  4 12:46:07 2015 CDT
 * WPBeginner: [How to Display a User’s IP Address in WordPress](http://www.wpbeginner.com/wp-tutorials/how-to-display-a-users-ip-address-in-wordpress/)
 * SitePoint: [Building a JavaScript Autocomplete Widget with Awesomplete](http://www.sitepoint.com/javascript-autocomplete-widget-awesomplete/)
+* StackOverflow: [Why does npm install say I have unmet dependencies?](http://stackoverflow.com/questions/20764881/why-does-npm-install-say-i-have-unmet-dependencies)
 
+* How we brought in Typeahead using bower:
+        * IMPORTANT: We do this in our host shell, not in the Homestead VM
+
+    * install bower locally
+    ```
+    sudo npm install bower --save-dev
+    ```
+
+    * set up .bowerrc; in it, say way to put our bower files
+    ```
+    {
+        "directory": "vendor/bower_dl"
+    }
+    ```
+
+    * make a bower.json file
+    ```
+    bower init
+    ```
+
+    * install typeahead.js
+    ```
+    bower install typeahead.js --save
+    ```
+
+    * make a gulp task to copy from bower_dl to public/js
+    ```
+    gulp.task('copyfiles', function() {
+    
+        gulp.src('vendor/bower_dl/typeahead.js/dist/typeahead.bundle.js' )
+            .pipe(gulp.dest('public/js'));
+    
+    });
+    ```

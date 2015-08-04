@@ -33,6 +33,8 @@
 @stop
 
 @section('script')
+<script src="js/typeahead.bundle.js" type="text/javascript" charset="utf-8"></script>
+
 <script type="text/javascript" charset="utf-8">
 
     $(document).ready(function() {
