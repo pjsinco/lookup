@@ -103,3 +103,13 @@
     
     });
     ```
+
+* Blog: [Typeahead.js Autocomplete Suggestion + Bloodhount Remote Data - Tutorial and Demo](http://mycodde.blogspot.com/2014/12/typeaheadjs-autocomplete-suggestion.html)
+
+* StackOverflow: [Working twitter-typeahead example?](http://stackoverflow.com/questions/28102146/working-twitter-typeahead-example)
+
+* Today, we brought in some basic typeahead styles from here: StackOverflow [Twitter's typeahead.js suggestions are not styled (have no border, transparent background, etc.)](http://stackoverflow.com/questions/20198247/twitters-typeahead-js-suggestions-are-not-styled-have-no-border-transparent-b)
+
+* Looks good: 
+    * Blog: [Simple Typeahead With AngularJS and Laravel – Part 1](http://ryanchenkie.com/typeahead-part-1/)
+    * Blog: [Simple Typeahead With AngularJS and Laravel – Part 2](http://ryanchenkie.com/typeahead-part-2/)
