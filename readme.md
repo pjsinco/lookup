@@ -110,6 +110,8 @@
 
 * Today, we brought in some basic typeahead styles from here: StackOverflow [Twitter's typeahead.js suggestions are not styled (have no border, transparent background, etc.)](http://stackoverflow.com/questions/20198247/twitters-typeahead-js-suggestions-are-not-styled-have-no-border-transparent-b)
 
-* Looks good: 
-    * Blog: [Simple Typeahead With AngularJS and Laravel – Part 1](http://ryanchenkie.com/typeahead-part-1/)
-    * Blog: [Simple Typeahead With AngularJS and Laravel – Part 2](http://ryanchenkie.com/typeahead-part-2/)
+* Blog: [Simple Typeahead With AngularJS and Laravel – Part 1](http://ryanchenkie.com/typeahead-part-1/)
+* Blog: [Simple Typeahead With AngularJS and Laravel – Part 2](http://ryanchenkie.com/typeahead-part-2/)
+
+#####Wed Aug  5 14:56:37 2015 CDT
+* StackOverflow: [typeahead, bloodhound : remote works but not prefetch](http://stackoverflow.com/questions/23569375/typeahead-bloodhound-remote-works-but-not-prefetch)

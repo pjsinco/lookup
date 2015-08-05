@@ -12,11 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('findado.index');
+    return view('home');
 });
 
 
-Route::get('/findado', 'FindADOController@index');
+Route::get('findado', 'FindADOController@index');
+
+Route::get('results', 'ResultsController@index');
 
 Route::group(['prefix' => 'api/v1'], function() {
 

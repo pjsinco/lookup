@@ -4,12 +4,17 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-offset-4 col-xs-4 col-xs-offset-4">
-            <h1 class="text-center">Find a Demo</h1>
+            <h1 class="text-center">Find a Workbench</h1>
         </div>
     </div>
     <hr />
     <div class="row">
-        {!! Form::open(['url' => 'location', 'action' => 'GET', 'class' => 'form']) !!}
+        {!! Form::open(['url' => '/results', 'method' => 'GET', 'class' => 'form']) !!}
+            {!! Form::hidden('city', null, ['class' => 'city']) !!}
+            {!! Form::hidden('state', null, ['class' => 'state']) !!}
+            {!! Form::hidden('zip', null, ['class' => 'zip']) !!}
+            {!! Form::hidden('lat', null, ['class' => 'lat']) !!}
+            {!! Form::hidden('lon', null, ['class' => 'lon']) !!}
         <div class="col-xs-offset-2 col-xs-4">
             <div class="form-group">
                 {{-- Form::label('location') --}}
@@ -39,14 +44,28 @@
 
     $(document).ready(function() {
 
+        var city, state, zip, lat, lon;
+
         /**
          * Ajax in our random location and populate the location form field
          *
          */
         $('#location').load('api/v1/locations/random', function(responseText, textStatus, jqXHR) {
             var json = JSON.parse(responseText);
+            city = json.data.city;
+            state = json.data.state;
+            zip = json.data.zip;
+            lat = json.data.lat;
+            lon = json.data.lon;
+
             $(this).val(json.data.city + ', ' + json.data.state + ' ' + json.data.zip );
+            $('.city').val(city);
+            $('.state').val(state);
+            $('.zip').val(zip);
+            $('.lat').val(lat);
+            $('.lon').val(lon);
         });
+
 
         var locations = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
@@ -61,6 +80,8 @@
                             city: d.city,
                             state: d.state,
                             zip: d.zip,
+                            lat: d.lat,
+                            lon: d.lon,
                             value: d.city + ', ' + d.state + ' ' + d.zip
                         }
                     })
@@ -78,6 +99,23 @@
             displayKey: 'value',
             source: locations.ttAdapter()
         });
+
+        $('#location').bind('typeahead:select', function(evt, suggestion) {
+            console.log(suggestion);
+            city = suggestion.city;
+            state = suggestion.state;
+            zip = suggestion.zip;
+            lat = suggestion.lat;
+            lon = suggestion.lon;
+        });
+
+        $('#location').on('blur', function(evt) {
+            $('.city').val(city);
+            $('.state').val(state);
+            $('.zip').val(zip);
+            $('.lat').val(lat);
+            $('.lon').val(lon);
+        })
     });
 
     
