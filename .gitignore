@@ -7,3 +7,5 @@ Homestead.yaml
 /database/seeds/data/zips-imprecise-lat-lon.csv
 /database/seeds/data/cityzip.csv
 /database/seeds/data/finda*.csv
+*.swo
+*.swp
