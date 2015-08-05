@@ -2,6 +2,7 @@
 
 namespace App;
 
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Location extends Model
@@ -11,10 +12,9 @@ class Location extends Model
 
     public static function random()
     {
-        $location = \DB::table('locations')
+        $location = DB::table('locations')
             ->orderByRaw('RAND()')
-            ->limit(1)
-            ->get();
+            ->first();
         return $location;
     }
 

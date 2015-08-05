@@ -3,15 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App;
 use Response;
+use Elit\Transformers\LocationTransformer;
 
-class LocationsController extends Controller
+class LocationsController extends ApiController
 {
+
+    protected $locationTransformer;
     
+    public function __construct(LocationTransformer $locationTransformer)
+    {
+        $this->locationTransformer = $locationTransformer;
+    }
+
     /**
      * Return a random location
      *
@@ -21,7 +28,12 @@ class LocationsController extends Controller
     public function random(Request $request)
     {
         if ($request->ajax()) {
-            return Response::json(App\Location::random(), 200);
+            $location = (array) App\Location::random();
+            if ($location) {
+                return $this->respond([
+                    'data' => $this->locationTransformer->transform($location),
+                ]);
+            }
         }
 
         App::abort(404, 'Not authorized to view this page');
@@ -42,7 +54,9 @@ class LocationsController extends Controller
             FROM locations
             WHERE zip LIKE" . $location . "%;
         ";
-        $locations = App\Location::where('zip', 'like', $location . '%')->get();
+        $locations = App\Location::where('zip', 'like', $location . '%')
+            ->orWhere('city', 'like', $location . '%')
+            ->get();
         
         if ($locations) {
             return Response::json($locations, 200);
