@@ -15,7 +15,6 @@ class Location extends Model
             ->orderByRaw('RAND()')
             ->limit(1)
             ->get();
-
         return $location;
     }
 
