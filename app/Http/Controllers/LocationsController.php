@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App;
 use Response;
+use Input;
 use Elit\Transformers\LocationTransformer;
 
 class LocationsController extends ApiController
@@ -17,6 +18,15 @@ class LocationsController extends ApiController
     public function __construct(LocationTransformer $locationTransformer)
     {
         $this->locationTransformer = $locationTransformer;
+    }
+
+    public function index()
+    {
+        $locations = \App\Location::all();
+
+        return $this->respond([
+            'data' => $this->locationTransformer->TransformCollection($locations->all()),
+        ]);
     }
 
     /**

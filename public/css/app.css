@@ -6000,7 +6000,8 @@ button.close {
 
 .tt-menu {
   /* UPDATE: newer versions use tt-menu instead of tt-dropdown-menu */
-  width: 422px;
+  /*width: 422px;*/
+  width: 100%;
   margin-top: 12px;
   padding: 8px 0;
   background-color: #fff;
@@ -6012,7 +6013,8 @@ button.close {
 .tt-suggestion {
   padding: 3px 20px;
   font-size: 18px;
-  line-height: 24px; }
+  line-height: 24px;
+  text-align: left; }
 
 .tt-suggestion.tt-cursor {
   /* UPDATE: newer versions use .tt-suggestion.tt-cursor */
@@ -6021,5 +6023,20 @@ button.close {
 
 .tt-suggestion p {
   margin: 0; }
+
+/**
+ * BOOTSTRAP OVERRIDES
+ *
+ */
+@media (min-width: 768px) {
+  .form-inline .form-control {
+    width: 20em; } }
+
+/**
+ * MY STYLES
+ *
+ */
+.finda {
+  text-align: center; }
 
 /*# sourceMappingURL=app.css.map */

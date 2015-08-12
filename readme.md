@@ -1,3 +1,7 @@
+TODO    
+* Make both "St. Louis" and "Saint Louis" and "St Louis" available
+    * As well as other "Saint" cities
+
 #dboFindaDO
 * Fri Jul 31 11:50:51 2015 CDT 
     * keeping field names the same but for one:
@@ -115,3 +119,15 @@
 
 #####Wed Aug  5 14:56:37 2015 CDT
 * StackOverflow: [typeahead, bloodhound : remote works but not prefetch](http://stackoverflow.com/questions/23569375/typeahead-bloodhound-remote-works-but-not-prefetch)
+
+#####Thu Aug  6 08:03:25 2015 CDT
+* Company Blog: [Full Text Search in your Database: Algolia vs Elasticsearch](https://blog.algolia.com/full-text-search-in-your-database-algolia-versus-elasticsearch/)
+
+#####Thu Aug  6 17:07:23 2015 CDT
+* jQ Plugin: [Nice form styling](http://brianreavis.github.io/selectize.js/)
+
+#####Fri Aug  7 06:15:36 2015 CDT
+* Find a for JS library on a CDN: [jsDelivr](http://www.jsdelivr.com)
+
+######Sat Aug  8 11:11:29 2015 CDT
+* Autocomplete, search: [SwiftType](https://swiftype.com/)
