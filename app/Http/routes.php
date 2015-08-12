@@ -15,7 +15,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-
 Route::get('findado', 'FindADOController@index');
 
 Route::get('results', 'ResultsController@index');
@@ -26,4 +25,7 @@ Route::group(['prefix' => 'api/v1'], function() {
     Route::get('locations/random', 'LocationsController@random');
     Route::get('locations/{location}', 'LocationsController@show');
 
+    Route::get('physicians/search', 'PhysiciansController@search');
+
 });
+
