@@ -46,7 +46,7 @@ $(document).ready(function() {
                 })
             }
         }
-    }) 
+    }); 
 
     locations.initialize();
 
@@ -107,6 +107,65 @@ $(document).ready(function() {
         $('.lon').val(lon);
     });
 
+
+    /**
+     * Handle physician/specialty input
+     *
+     */
+
+    var physicians = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        limit: 10,
+        remote: {
+            url: 'api/v1/physicians/%QUERY',
+            replace: function(url, uriEncodedQuery) {
+                return url + '?foo=bar&q=' + uriEncodedQuery;
+            },
+            wildcard: '%QUERY',
+            filter: function(physicians) {
+                return $.map(physicians, function(d) {
+                    return $.map(d, function(e) {
+                        return {
+                            first_name: e.first_name,
+                            last_name: e.last_name,
+                            designation: e.designation,
+                            city: e.city,
+                            state: e.state,
+                            value: e.full_name
+                        };
+                    });
+                });
+            }
+        }
+    });
+
+    physicians.initialize();
+
+    $('#what').typeahead({
+        hint: false,
+        highlight: true,
+        minLength: 3,
+    }, {
+        name: 'physicians',
+        limit: 7,
+        display: 'value',
+        source: physicians.ttAdapter(),
+        templates: {
+            header: '<h3>Physicians</h3>',
+            suggestion: function(data) {
+                return '<div>' + data.first_name + ' ' + data.last_name + ', ' +
+                    data.designation + '; ' + data.city + ', ' + data.state +
+                    '</div>';
+            },
+            empty: [
+                '<div class="empty-message">',
+                'Sorry, unable to find any matches',
+                '</div>',
+            ].join('\n')
+        }
+
+    });
 
     /**
      * Kickoff

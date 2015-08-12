@@ -1,6 +1,7 @@
 TODO    
 * Make both "St. Louis" and "Saint Louis" and "St Louis" available
     * As well as other "Saint" cities
+* Some physicians have fields for city
 
 #dboFindaDO
 * Fri Jul 31 11:50:51 2015 CDT 
@@ -131,3 +132,7 @@ TODO
 
 ######Sat Aug  8 11:11:29 2015 CDT
 * Autocomplete, search: [SwiftType](https://swiftype.com/)
+
+######Wed Aug 12 17:06:18 2015 CDT
+* How to add additional query string parameters to the URL request
+        * Typeahead issues: [Additional Querystring Parameters](https://github.com/twitter/typeahead.js/issues/377)
