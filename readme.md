@@ -2,6 +2,8 @@ TODO
 * Make both "St. Louis" and "Saint Louis" and "St Louis" available
     * As well as other "Saint" cities
 * Some physicians have fields for city
+* In Liz's query, can we not concatenate fellow designations onto the `designation` field?
+        * See Dr. Hubka: "DO, FACOOG, FACOG,CS"
 
 #dboFindaDO
 * Fri Jul 31 11:50:51 2015 CDT 

@@ -27,7 +27,7 @@ class PhysiciansController extends ApiController
      */
     public function show($id)
     {
-echo 'hiya';
+        return \App\Physician::findOrFail($id);
     }
 
     /**

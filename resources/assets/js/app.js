@@ -1,4 +1,4 @@
-$(document).ready(function() {
+//$(document).ready(function() {
 
 
     var loc = {
@@ -129,7 +129,7 @@ $(document).ready(function() {
             replace: function(url, uriEncodedQuery) {
                 return url + '?name=' + uriEncodedQuery + '&city=' + loc.city;
             },
-            wildcard: '%QUERY',
+            //wildcard: '%QUERY',
             filter: function(physicians) {
                 return $.map(physicians, function(d) {
                     return $.map(d, function(e) {
@@ -139,6 +139,7 @@ $(document).ready(function() {
                             designation: e.designation,
                             city: e.city,
                             state: e.state,
+                            id: e.id,
                             value: e.full_name
                         };
                     });
@@ -159,7 +160,7 @@ $(document).ready(function() {
         display: 'value',
         source: physicians.ttAdapter(),
         templates: {
-            header: '<h5>Physicians</h5>',
+            header: '<h5 class="typeahead-subhead">Physicians near [city, state]</h5>',
             suggestion: function(data) {
                 return '<div>' + data.first_name + ' ' + data.last_name + ', ' +
                     data.designation + '; ' + data.city + ', ' + data.state +
@@ -179,4 +180,4 @@ $(document).ready(function() {
      */
     loadRandomLocation();
     
-});
+//});

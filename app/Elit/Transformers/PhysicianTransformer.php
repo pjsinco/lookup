@@ -14,6 +14,7 @@ class PhysicianTransformer extends Transformer
     public function transform($phys)
     {
         return [
+            'id' => $phys['id'],
             'full_name' => $phys['full_name'],
             'prefix' => $phys['prefix'],
             'first_name' => $phys['first_name'],

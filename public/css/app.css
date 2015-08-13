@@ -6039,4 +6039,10 @@ button.close {
 .finda {
   text-align: center; }
 
+.typeahead-subhead {
+  padding: 3px 20px 0 20px;
+  text-align: left;
+  font-weight: 400;
+  color: #337AB7; }
+
 /*# sourceMappingURL=app.css.map */
