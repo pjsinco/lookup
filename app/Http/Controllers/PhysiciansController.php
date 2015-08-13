@@ -19,7 +19,19 @@ class PhysiciansController extends ApiController
     }
 
     /**
-     * Search for a physician by last name.
+     * Return information for an individual physician.
+     *
+     * @param string
+     * @return json
+     * @param PJ
+     */
+    public function show($id)
+    {
+echo 'hiya';
+    }
+
+    /**
+     * Search for a physician. 
      *
      * @param string
      * @return json
@@ -27,27 +39,29 @@ class PhysiciansController extends ApiController
      */
     public function search(Request $request)
     {
-dd($request->input());
-        // for my own sake
-        $q = "
-            SELECT
-            FROM physicians
-            WHERE last_name LIKE" . $name . "%
-                or WHERE first_name LIKE" . $name . "%
-        ";
+        //$input = $request->input();
+        $name = $request->name;
+        $city = $request->city;
 
-        $physicians = \App\Physician::where('last_name', 'like', $name . '%')
-            ->orWhere('first_name', 'like', $name . '%')
-            ->get();
+        if ($request->has('city')) {
+
+            $physicians = \App\Physician::where(function($query) use ($name) {
+
+                $query
+                    ->where('last_name', 'like', $name . '%')
+                    ->orWhere('first_name', 'like', $name . '%');
+
+            })
+                ->where('city', '=', $city)
+                ->get();
+        }
 
         if ($physicians) {
             //return Response::json($physicians, 200);
             return $this->respond([
                 'data' => 
-                    $this->physicianTransformer
-                        ->transformCollection($physicians->all())
+                    $this->physicianTransformer->transformCollection($physicians->all())
             ]);
-
         }
 
         return Response::json([

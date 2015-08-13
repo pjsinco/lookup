@@ -136,3 +136,9 @@ TODO
 ######Wed Aug 12 17:06:18 2015 CDT
 * How to add additional query string parameters to the URL request
         * Typeahead issues: [Additional Querystring Parameters](https://github.com/twitter/typeahead.js/issues/377)
+
+* StackOverflow: [Laravel Route basic: Get a route with old fashioned php params](http://stackoverflow.com/questions/25621556/laravel-route-basic-get-a-route-with-old-fashioned-php-params)
+
+* StackOverflow: [RESTful URL design for search](http://stackoverflow.com/questions/207477/restful-url-design-for-search)
+
+* StackOverflow: [Typeahead.js - Search in multiple property values](http://stackoverflow.com/questions/21850707/typeahead-js-search-in-multiple-property-values)
