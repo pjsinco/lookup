@@ -58,14 +58,19 @@ class LocationsController extends ApiController
      */
     public function show($location)
     {
-        //605
-        $q = "
-            SELECT
-            FROM locations
-            WHERE zip LIKE" . $location . "%;
-        ";
+       
+        /**
+         * EXAMPLE 
+         * 
+         * select *
+         * from `locations`
+         * where `zip` like 'naper%' or `city` like 'naper%'
+         * group by city, zip
+         */
+
         $locations = App\Location::where('zip', 'like', $location . '%')
             ->orWhere('city', 'like', $location . '%')
+            ->groupBy(['city', 'zip'])
             ->get();
         
         if ($locations) {

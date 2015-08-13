@@ -70,12 +70,12 @@
             suggestion: function(data) {
                 return '<div>' + data.city + ', ' + data.state + ' ' +
                     data.zip + '</div>';
-            },
-            empty: [
-                '<div class="empty-message">',
-                'Sorry, unable to find any matches',
-                '</div>',
-            ].join('\n')
+            }
+            //empty: [
+                //'<div class="empty-message">',
+                //'Sorry, unable to find any matches',
+                //'</div>',
+            //].join('\n')
         }
         
     });
@@ -165,12 +165,12 @@
                 return '<div>' + data.first_name + ' ' + data.last_name + ', ' +
                     data.designation + '; ' + data.city + ', ' + data.state +
                     '</div>';
-            },
-            empty: [
-                '<div class="empty-message">',
-                'Sorry, unable to find any matches',
-                '</div>',
-            ].join('\n')
+            }
+            //empty: [
+                //'<div class="empty-message">',
+                //'Sorry, unable to find any matches',
+                //'</div>',
+            //].join('\n')
         }
     });
 
