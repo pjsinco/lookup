@@ -1,6 +1,5 @@
 //$(document).ready(function() {
 
-
     var loc = {
         city: '',
         state: '',
@@ -36,7 +35,6 @@
     var locations = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
-        limit: 10,
         remote: {
             url: 'api/v1/locations/%QUERY',
             wildcard: '%QUERY',
@@ -123,7 +121,7 @@
     var physicians = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
-        limit: 10,
+        limit: 7,
         remote: {
             url: 'api/v1/physicians/search',
             replace: function(url, uriEncodedQuery) {
@@ -154,6 +152,7 @@
         hint: false,
         highlight: true,
         minLength: 3,
+        limit: 7,
     }, {
         name: 'physicians',
         limit: 7,
@@ -162,9 +161,11 @@
         templates: {
             header: '<h5 class="typeahead-subhead">Physicians near [city, state]</h5>',
             suggestion: function(data) {
-                return '<div>' + data.first_name + ' ' + data.last_name + ', ' +
+                // TODO
+                // remove hard-coded url
+                return '<div><a href="http://lookup.dev/physicians/' + data.id + '">' + data.first_name + ' ' + data.last_name + ', ' +
                     data.designation + '; ' + data.city + ', ' + data.state +
-                    '</div>';
+                    '</a></div>';
             }
             //empty: [
                 //'<div class="empty-message">',

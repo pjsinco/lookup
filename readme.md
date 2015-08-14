@@ -1,8 +1,35 @@
-TODO    
+#TODO    
+
 * Make both "St. Louis" and "Saint Louis" and "St Louis" available
     * As well as other "Saint" cities
-* Some physicians have fields for city
-* In Liz's query, can we not concatenate fellow designations onto the `designation` field?
+    * "Ft Worth" vs. "Fort Worth"
+* Note mismatch between "St" and "Saint" in locations table, physicians table
+```
+physicians table
+------------------+----------------+
+| city             | state_province |
++------------------+----------------+
+| Saint Louis      | MO             |
+| Saint Louis      | MI             |
+| Lake St Louis    | MO             |
+| Lake Saint Louis | MO             |
+| Bay Saint Louis  | MS             |
++------------------+----------------+
+
+locations table
++---------------+-------+
+| city          | state |
++---------------+-------+
+| Bay St Louis  | MS    |
+| St Louis      | MI    |
+| East St Louis | IL    |
+| St Louis      | MO    |
+| Lake St Louis | MO    |
++---------------+-------+
+```
+
+* Some physicians have empty fields for city
+* In the FindADO query, can we not concatenate fellow designations onto the `designation` field?
         * See Dr. Hubka: "DO, FACOOG, FACOG,CS"
 
 #dboFindaDO
@@ -144,3 +171,8 @@ TODO
 * StackOverflow: [RESTful URL design for search](http://stackoverflow.com/questions/207477/restful-url-design-for-search)
 
 * StackOverflow: [Typeahead.js - Search in multiple property values](http://stackoverflow.com/questions/21850707/typeahead-js-search-in-multiple-property-values)
+
+#####Fri Aug 14 05:48:57 2015 CDT
+* StackOverflow: [How to use typeahead.js with a large database](http://stackoverflow.com/questions/18084408/how-to-use-typeahead-js-with-a-large-database)
+
+* StackOverflow: [Calculating distance between zip codes in PHP](http://stackoverflow.com/questions/407989/calculating-distance-between-zip-codes-in-php)
