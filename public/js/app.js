@@ -1,5 +1,9 @@
 //$(document).ready(function() {
 
+    $('#location').tooltipster({
+        content: $('hiya')
+    });
+
     var loc = {
         city: '',
         state: '',
