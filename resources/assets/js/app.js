@@ -56,7 +56,7 @@
     locations.initialize();
 
     $('#location').typeahead({
-        hint: false,
+        hint: true,
         highlight: true,
         minLength: 3,
     }, {
@@ -91,17 +91,17 @@
         loc.lon = suggestion.lon;
     });
 
-      $('#location').bind('typeahead:idle', function(evt) {
-          console.log('idle');
-          console.log(evt);
-      });
-
-    $('#location').bind('typeahead:asyncrequest', function(evt, query, dataset) {
-        console.log('asyncrequest');
-        /*console.log(evt);*/
-        /*console.log(query);*/
-        /*console.log(dataset);*/
-    });
+//      $('#location').bind('typeahead:idle', function(evt) {
+//          console.log('idle');
+//          console.log(evt);
+//      });
+//
+//    $('#location').bind('typeahead:asyncrequest', function(evt, query, dataset) {
+//        console.log('asyncrequest');
+//        /*console.log(evt);*/
+//        /*console.log(query);*/
+//        /*console.log(dataset);*/
+//    });
 
 
     $('#location').on('blur', function(evt) {
@@ -121,7 +121,7 @@
     var physicians = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
-        limit: 7,
+        //limit: 7,
         remote: {
             url: 'api/v1/physicians/search',
             replace: function(url, uriEncodedQuery) {
@@ -146,16 +146,27 @@
         }
     });
 
+    var specialties = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        limit: 7,
+        remote: {
+            url: 'api/v1/specialties/search/%QUERY',
+
+        }
+
+    });
+
     physicians.initialize();
 
     $('#what').typeahead({
         hint: false,
         highlight: true,
-        minLength: 3,
-        limit: 7,
+        minLength: 2,
+        //limit: 7,
     }, {
         name: 'physicians',
-        limit: 7,
+        //limit: 7,
         display: 'value',
         source: physicians.ttAdapter(),
         templates: {
@@ -167,11 +178,6 @@
                     data.designation + '; ' + data.city + ', ' + data.state +
                     '</a></div>';
             }
-            //empty: [
-                //'<div class="empty-message">',
-                //'Sorry, unable to find any matches',
-                //'</div>',
-            //].join('\n')
         }
     });
 

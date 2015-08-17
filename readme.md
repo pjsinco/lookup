@@ -176,3 +176,10 @@ locations table
 * StackOverflow: [How to use typeahead.js with a large database](http://stackoverflow.com/questions/18084408/how-to-use-typeahead-js-with-a-large-database)
 
 * StackOverflow: [Calculating distance between zip codes in PHP](http://stackoverflow.com/questions/407989/calculating-distance-between-zip-codes-in-php)
+
+* Blog: [Why empty states deserve more design time](http://blog.invisionapp.com/why-empty-states-deserve-more-design-time/)
+    * Possible empty state:
+        "We didn't find any osteopathic physicians in your area. But here's a list of DOs in your state:"
+
+#####Mon Aug 17 09:33:25 2015 CDT
+* Typeahead issue: [Dropdown closes and reopens on keypress with remote dataset #176](https://github.com/twitter/typeahead.js/issues/176)

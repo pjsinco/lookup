@@ -85,4 +85,9 @@ class LocationsController extends ApiController
         ], 404);
     }
 
+    public function testSearch(Request $request) 
+    {
+        
+    }
+
 }
