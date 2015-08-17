@@ -35,20 +35,25 @@
     var locations = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
+        limit: 10,
         remote: {
-            url: 'api/v1/locations/%QUERY',
-            wildcard: '%QUERY',
+            url: 'api/v1/locations/search',
+            replace: function(url, query) {
+                return url + '?q=' + query;
+            },
             filter: function(locations) {
                 return $.map(locations, function(d) {
-                    return {
-                        city: d.city,
-                        state: d.state,
-                        zip: d.zip,
-                        lat: d.lat,
-                        lon: d.lon,
-                        value: d.city + ', ' + d.state + ' ' + d.zip
-                    }
-                })
+                    return $.map(d, function(e) {
+                        return {
+                            city: e.city,
+                            state: e.state,
+                            zip: e.zip,
+                            lat: e.lat,
+                            lon: e.lon,
+                            value: e.city + ', ' + e.state + ' ' + e.zip
+                        };
+                    });
+                });
             }
         }
     }); 
@@ -61,7 +66,6 @@
         minLength: 3,
     }, {
         name: 'locations',
-        limit: 7,
         display: 'value',
         source: locations.ttAdapter(),
         templates: {
@@ -69,12 +73,8 @@
                 return '<div>' + data.city + ', ' + data.state + ' ' +
                     data.zip + '</div>';
             }
-            //empty: [
-                //'<div class="empty-message">',
-                //'Sorry, unable to find any matches',
-                //'</div>',
-            //].join('\n')
-        }
+        },
+        engine: Hogan
         
     });
 
@@ -82,8 +82,10 @@
      * Debug Typeahead events
      *
      */
-    $('#location').bind('typeahead:select', function(evt, suggestion) {
+    $('#location').bind('typeahead:selected', function(evt, suggestion, dataset) {
         console.log(suggestion);
+        console.log(evt);
+        console.log(dataset);
         loc.city = suggestion.city;
         loc.state = suggestion.state;
         loc.zip = suggestion.zip;
@@ -91,26 +93,14 @@
         loc.lon = suggestion.lon;
     });
 
-//      $('#location').bind('typeahead:idle', function(evt) {
-//          console.log('idle');
-//          console.log(evt);
-//      });
-//
-//    $('#location').bind('typeahead:asyncrequest', function(evt, query, dataset) {
-//        console.log('asyncrequest');
-//        /*console.log(evt);*/
-//        /*console.log(query);*/
-//        /*console.log(dataset);*/
+
+//    $('#location').on('blur', function(evt) {
+//        $('.city').val(loc.city);
+//        $('.state').val(loc.state);
+//        $('.zip').val(loc.zip);
+//        $('.lat').val(loc.lat);
+//        $('.lon').val(loc.lon);
 //    });
-
-
-    $('#location').on('blur', function(evt) {
-        $('.city').val(loc.city);
-        $('.state').val(loc.state);
-        $('.zip').val(loc.zip);
-        $('.lat').val(loc.lat);
-        $('.lon').val(loc.lon);
-    });
 
 
     /**

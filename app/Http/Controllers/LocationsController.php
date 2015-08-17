@@ -20,6 +20,33 @@ class LocationsController extends ApiController
         $this->locationTransformer = $locationTransformer;
     }
 
+    public function search(Request $request)
+    {
+        $location = $request->q;
+
+        $locations = App\Location::where('zip', 'like', $location . '%')
+            ->orWhere('city', 'like', $location . '%')
+            ->groupBy(['city', 'zip'])
+            ->get();
+        
+        if ($locations) {
+            return $this->respond([
+                'data' =>
+                    $this->locationTransformer->transformCollection($locations->all())
+            ]);
+        }
+
+        return Response::json([
+            'error' => [
+                'message' => 'Location not found',
+                'status_code' => 404,
+            ]
+        ], 404);
+
+    }
+
+
+
     public function index()
     {
         $locations = \App\Location::all();
@@ -58,7 +85,6 @@ class LocationsController extends ApiController
      */
     public function show($location)
     {
-       
         /**
          * EXAMPLE 
          * 

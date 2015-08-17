@@ -23,6 +23,7 @@ Route::group(['prefix' => 'api/v1'], function() {
 
     Route::get('locations', 'LocationsController@index');
     Route::get('locations/random', 'LocationsController@random');
+    Route::get('locations/search', 'LocationsController@search');
     Route::get('locations/{location}', 'LocationsController@show');
 
     Route::get('physicians/search', 'PhysiciansController@search');
