@@ -15,8 +15,8 @@ var gulp = require('gulp');
 
 gulp.task('copyfiles', function() {
 
-    gulp.src('vendor/bower_dl/typeahead.js/dist/typeahead.bundle.js' )
-        .pipe(gulp.dest('public/js'));
+    //gulp.src('vendor/bower_dl/typeahead.js/dist/typeahead.bundle.js' )
+        //.pipe(gulp.dest('public/js'));
 
 });
 
