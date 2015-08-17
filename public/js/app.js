@@ -189,7 +189,4 @@
     
 //});
 
-console.log('select2');
-
-
 //# sourceMappingURL=app.js.map
