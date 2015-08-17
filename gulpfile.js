@@ -22,7 +22,8 @@ gulp.task('copyfiles', function() {
 
 elixir(function(mix) {
     mix.scripts([
-        'app.js'
+        'app.js',
+        'app-select2.js'
     ], 'public/js/app.js');
     mix.sass('app.scss');
 });
