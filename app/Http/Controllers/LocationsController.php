@@ -20,14 +20,51 @@ class LocationsController extends ApiController
         $this->locationTransformer = $locationTransformer;
     }
 
+    /**
+     * Split string on comma.
+     *
+     * @param string
+     * @return array
+     * @author PJ
+     */
+    public function splitLocation($location)
+    {
+        return explode(',', $location);
+    }
+
+    /**
+     * Determine whether a string has a comma.
+     *
+     * @param string
+     * @return boolean
+     * @author PJ
+     */
+    public function hasComma($string)
+    {
+        return mb_strpos($string, ',') > 0;
+    }
+
     public function search(Request $request)
     {
         $location = $request->q;
 
-        $locations = App\Location::where('zip', 'like', $location . '%')
-            ->orWhere('city', 'like', $location . '%')
-            ->groupBy(['city', 'zip'])
-            ->get();
+        // if we have a comma, split the string on it
+        if ($this->hasComma($location)) {
+            $locationSplit = $this->splitLocation($location);
+            $city = trim($locationSplit[0]);
+            $state = trim($locationSplit[1]);
+
+            $locations = App\Location::where('city', '=', $city)
+                ->where('state', 'like', $state. '%')
+                ->get();
+
+        } else {
+
+            $locations = App\Location::where('zip', 'like', $location . '%')
+                ->orWhere('city', 'like', $location . '%')
+                ->groupBy(['city', 'zip'])
+                ->get();
+        }
         
         if ($locations) {
             return $this->respond([
@@ -42,10 +79,7 @@ class LocationsController extends ApiController
                 'status_code' => 404,
             ]
         ], 404);
-
     }
-
-
 
     public function index()
     {
