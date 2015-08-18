@@ -30,5 +30,6 @@
         </div>
         {!! Form::close() !!}
     </div>
+    <div id="ragged"></div>
 </div> <!-- .container -->
 @stop

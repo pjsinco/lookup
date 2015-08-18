@@ -13,7 +13,7 @@ class LocationTableSeeder extends Seeder
     {
         DB::table('locations')->truncate();
 
-        $locations = $this->getCsv('cityzip.csv');
+        $locations = $this->getCsv('premium.csv');
         $this->seedTable($locations);
     }
 
@@ -27,9 +27,9 @@ class LocationTableSeeder extends Seeder
     {
         foreach ($data as $lineIndex => $row) {
             $specialty = App\Location::create([
-                'state' => $row[0],
+                'zip' => $row[0],
                 'city' => $row[1],
-                'zip' => $row[2],
+                'state' => $row[2],
                 'lat' => $row[3],
                 'lon' => $row[4],
             ]);

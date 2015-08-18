@@ -1,8 +1,8 @@
-$(document).ready(function() {
+//$(document).ready(function() {
 
-    $('#location').tooltipster({
-        content: $('hiya')
-    });
+//    $('#location').tooltipster({
+//        content: $('hiya')
+//    });
 
     var loc = {
         city: '',
@@ -19,6 +19,8 @@ $(document).ready(function() {
     function isAZip(query) {
         
     }
+
+    
 
     /**
      * Ajax in our random location and populate the location form field
@@ -125,24 +127,42 @@ $(document).ready(function() {
      *
      */
     $('#location').bind('typeahead:selected', function(evt, suggestion, dataset) {
-        console.log(suggestion);
+
+        console.log('Suggestion: ' + suggestion.value);
         console.log(evt);
-        console.log(dataset);
         loc.city = suggestion.city;
         loc.state = suggestion.state;
         loc.zip = suggestion.zip;
         loc.lat = suggestion.lat;
         loc.lon = suggestion.lon;
+
+        // TODO 
+        // needs work
+        $('#location').on('blur', function(evt) {
+            updateFormInputsWithLocations();
+            console.log($('.city').val());
+            console.log($('.state').val());
+            console.log($('.zip').val());
+        });
+        
     });
 
+    function updateFormInputsWithLocations() {
+            $('.city').val(loc.city);
+            $('.state').val(loc.state);
+            $('.zip').val(loc.zip);
+            $('.lat').val(loc.lat);
+            $('.lon').val(loc.lon);
+    }
 
-//    $('#location').on('blur', function(evt) {
-//        $('.city').val(loc.city);
-//        $('.state').val(loc.state);
-//        $('.zip').val(loc.zip);
-//        $('.lat').val(loc.lat);
-//        $('.lon').val(loc.lon);
-//    });
+    function parseLocationField(input) {
+
+    }
+
+    $('#location').on('blur', function(evt) {
+        console.log('blurred');
+        updateFormInputsWithLocations();
+    });
 
 
     /**
@@ -219,4 +239,4 @@ $(document).ready(function() {
      */
     loadRandomLocation();
     
-});
+//});

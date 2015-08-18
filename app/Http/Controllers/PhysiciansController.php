@@ -56,7 +56,7 @@ class PhysiciansController extends ApiController
                 ->get();
         }
 
-        if ($physicians) {
+        if (isset($physicians) && $physicians != '') {
             //return Response::json($physicians, 200);
             return $this->respond([
                 'data' => 
