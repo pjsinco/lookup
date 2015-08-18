@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
 Route::get('/', function () {
     return view('home');
 });
@@ -21,16 +10,33 @@ Route::get('results', 'ResultsController@index');
 
 Route::group(['prefix' => 'api/v1'], function() {
 
+    /**
+     * Locations
+     *
+     */
     Route::get('locations', 'LocationsController@index');
     Route::get('locations/random', 'LocationsController@random');
     Route::get('locations/search', 'LocationsController@search');
     Route::get('locations/{location}', 'LocationsController@show');
 
+
+    /**
+     * Physicians
+     */
     Route::get('physicians/search', 'PhysiciansController@search');
 
+
+    /**
+     * Specialties
+     *
+     */
     Route::get('specialties/search', 'SpecialtiesController@search');
 
 
+    /**
+     * Testing
+     *
+     */
     Route::get('test/locations', 'LocationsController@testSearch');
 
 });

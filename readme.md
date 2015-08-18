@@ -185,3 +185,7 @@ locations table
 * Typeahead issue: [Dropdown closes and reopens on keypress with remote dataset #176](https://github.com/twitter/typeahead.js/issues/176)
 
 * [Tooltipster](http://iamceege.github.io/tooltipster/)
+
+* Typeahead 0.10.5
+    * [Bloodhound docs](https://github.com/twitter/typeahead.js/blob/f835e162ec4551479114fd245c907ae032de692a/doc/bloodhound.md)
+    * [Typeahead docs](https://github.com/twitter/typeahead.js/blob/a9ac72afffdc88496700f7b26342b77b191f9a0a/doc/jquery_typeahead.md)

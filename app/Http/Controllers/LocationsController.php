@@ -27,7 +27,7 @@ class LocationsController extends ApiController
      * @return array
      * @author PJ
      */
-    public function splitLocation($location)
+    private function splitLocation($location)
     {
         return explode(',', $location);
     }
@@ -39,7 +39,7 @@ class LocationsController extends ApiController
      * @return boolean
      * @author PJ
      */
-    public function hasComma($string)
+    private function hasComma($string)
     {
         return mb_strpos($string, ',') > 0;
     }
@@ -47,6 +47,12 @@ class LocationsController extends ApiController
     public function search(Request $request)
     {
         $location = $request->q;
+
+        // if the query is on a zip code, search zip codes
+//        if (is_numeric($location)) {
+//            $locations = App\Location::where('zip', 'like', $location . '%')
+//                ->get()
+//        } 
 
         // if we have a comma, split the string on it
         if ($this->hasComma($location)) {
@@ -57,9 +63,7 @@ class LocationsController extends ApiController
             $locations = App\Location::where('city', '=', $city)
                 ->where('state', 'like', $state. '%')
                 ->get();
-
         } else {
-
             $locations = App\Location::where('zip', 'like', $location . '%')
                 ->orWhere('city', 'like', $location . '%')
                 ->groupBy(['city', 'zip'])

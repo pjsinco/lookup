@@ -15,6 +15,7 @@
     <script src="http://twitter.github.com/hogan.js/builds/3.0.1/hogan-3.0.1.js"></script>
     <script src="{{ asset('/js/typeahead.0.10.5.bundle.js') }}" type="text/javascript" charset="utf-8"></script>
     <script src="{{ asset('/js/jquery.tooltipster.js') }}" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ asset('/js/underscore.min.js') }}" type="text/javascript" charset="utf-8"></script>
     <script src="{{ asset('/js/app.js') }}" type="text/javascript" charset="utf-8"></script>
 
     @yield('script')

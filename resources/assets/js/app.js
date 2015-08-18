@@ -1,4 +1,4 @@
-//$(document).ready(function() {
+$(document).ready(function() {
 
     $('#location').tooltipster({
         content: $('hiya')
@@ -11,6 +11,14 @@
         lat: '',
         lon: ''
     };
+
+    /**
+     * 
+     *
+     */
+    function isAZip(query) {
+        
+    }
 
     /**
      * Ajax in our random location and populate the location form field
@@ -46,18 +54,43 @@
                 return url + '?q=' + query;
             },
             filter: function(locations) {
+                var userTyped = ($('#location').typeahead('val'));
                 return $.map(locations, function(d) {
-                    return $.map(d, function(e) {
-                        return {
-                            city: e.city,
-                            state: e.state,
-                            zip: e.zip,
-                            lat: e.lat,
-                            lon: e.lon,
-                            value: e.city + ', ' + e.state + ' ' + e.zip
-                        };
+                        //console.log(d); // gives the array of objects
+
+                        // user typed a city
+                        if (isNaN(userTyped)) {
+                    
+                            // Keep the city, state list unique
+                            var unique = _.uniq(d, false, function(item) {
+                                //multiple values with _.uniq
+                                //http://stackoverflow.com/questions/26306415/underscore-lodash-unique-by-multiple-properties
+                                return [item.city, item.state].join();
+                            });
+
+                            return $.map(unique, function(e) {
+                                return {
+                                    city: e.city,
+                                    state: e.state,
+                                    lat: e.lat,
+                                    lon: e.lon,
+                                    value: e.city + ', ' + e.state
+                                };
+                            });
+                        } else {
+                        // user typed a zip, so let's include zips
+                            return $.map(d, function(e) {
+                                return {
+                                    city: e.city,
+                                    state: e.state,
+                                    zip: e.zip,
+                                    lat: e.lat,
+                                    lon: e.lon,
+                                    value: e.city + ', ' + e.state + ' ' + e.zip
+                                };
+                            });
+                        }
                     });
-                });
             }
         }
     }); 
@@ -74,8 +107,13 @@
         source: locations.ttAdapter(),
         templates: {
             suggestion: function(data) {
-                return '<div>' + data.city + ', ' + data.state + ' ' +
-                    data.zip + '</div>';
+                var userTyped = $('#location').typeahead('val');
+                if (isNaN(userTyped)) {
+                    return '<div>' + data.city + ', ' + data.state + '</div>';
+                } else {
+                    return '<div>' + data.city + ', ' + data.state + ' ' +
+                        data.zip + '</div>';
+                }
             }
         },
         engine: Hogan
@@ -181,4 +219,4 @@
      */
     loadRandomLocation();
     
-//});
+});
