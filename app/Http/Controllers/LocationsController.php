@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App;
+use DB;
 use Response;
 use Input;
 use Elit\Transformers\LocationTransformer;
@@ -152,6 +153,20 @@ class LocationsController extends ApiController
     public function testSearch(Request $request) 
     {
         
+    }
+
+    public function withinDistance($lat, $lon, $distance)
+    {
+        $q =
+        "SELECT 
+            city, 
+            state, 
+            (3959 * acos( cos( radians(" . $request->lat  . ") ) * cos( radians( lat ) ) * cos( radians( lon ) - radians(" . $request->lon . ") ) + sin( radians(" . $request->lat . ") ) * sin( radians( lat ) ) ) ) AS distance
+        from locations
+            having distance < $request->distance
+        order by distance ASC";
+        
+        $locations = DB::select($q);
     }
 
 }

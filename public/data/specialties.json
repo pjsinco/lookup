@@ -1,0 +1,924 @@
+{
+    "data": [
+        {
+            "code": "ACP",
+            "name": "Antomic & Clinical Pathology"
+        },
+        {
+            "code": "ADA",
+            "name": "Addiction Medicine-AN"
+        },
+        {
+            "code": "ADD",
+            "name": "Addictive Diseases"
+        },
+        {
+            "code": "ADL",
+            "name": "Adolescent Medicine"
+        },
+        {
+            "code": "ADM",
+            "name": "Addiction Medicine-PM"
+        },
+        {
+            "code": "AGP",
+            "name": "Adolescent Medicine-GP"
+        },
+        {
+            "code": "AI",
+            "name": "Allergy and Immunology"
+        },
+        {
+            "code": "AIIP",
+            "name": "Adult and Pediatric Allergy and Immunology"
+        },
+        {
+            "code": "AJI",
+            "name": "Arthritis & Joint Implant Surg"
+        },
+        {
+            "code": "AM",
+            "name": "Preventive Med-Aerospace Med"
+        },
+        {
+            "code": "AME",
+            "name": "Addiction Medicine"
+        },
+        {
+            "code": "AN",
+            "name": "Anesthesiology"
+        },
+        {
+            "code": "ANG",
+            "name": "Angiography & Intervention Rad"
+        },
+        {
+            "code": "AP",
+            "name": "Anatomic Pathology"
+        },
+        {
+            "code": "APL",
+            "name": "Anatomic Pathology & Lab Med"
+        },
+        {
+            "code": "APM",
+            "name": "Anesthesiology-Pain Management"
+        },
+        {
+            "code": "APS",
+            "name": "Addiction Psychiatry"
+        },
+        {
+            "code": "ARE",
+            "name": "Adult Reconstruction"
+        },
+        {
+            "code": "ART",
+            "name": "Arthroscopy and Sports Medicine"
+        },
+        {
+            "code": "AS",
+            "name": "Abdominal Surgery"
+        },
+        {
+            "code": "ASM",
+            "name": "Aerospace Medicine"
+        },
+        {
+            "code": "BBT",
+            "name": "Blood Banking-Transfusion Med"
+        },
+        {
+            "code": "BI",
+            "name": "Breast Imaging"
+        },
+        {
+            "code": "BON",
+            "name": "Breast Oncology"
+        },
+        {
+            "code": "C",
+            "name": "Cardiology"
+        },
+        {
+            "code": "CAN",
+            "name": "Cardiothoracic Anesthesiology"
+        },
+        {
+            "code": "CAP",
+            "name": "Child & Adolescent Psychiatry"
+        },
+        {
+            "code": "CCA",
+            "name": "Critical Care-Anesthesiology"
+        },
+        {
+            "code": "CCM",
+            "name": "Critical Care-Medicine"
+        },
+        {
+            "code": "CCS",
+            "name": "Critical Care-Surgery"
+        },
+        {
+            "code": "CCT",
+            "name": "Critical Care-Trauma"
+        },
+        {
+            "code": "CDS",
+            "name": "Cosmetic Dermatologic Surgery"
+        },
+        {
+            "code": "CG",
+            "name": "Clinical Genetics"
+        },
+        {
+            "code": "CHM",
+            "name": "Clinical Hyperbaric Medicine"
+        },
+        {
+            "code": "CHN",
+            "name": "Child Neurology"
+        },
+        {
+            "code": "CHP",
+            "name": "Child Psychiatry"
+        },
+        {
+            "code": "CIR",
+            "name": "Cardiov-Interventnl Radiology"
+        },
+        {
+            "code": "CLP",
+            "name": "Clinical Pathology"
+        },
+        {
+            "code": "CM",
+            "name": "Correctional Medicine"
+        },
+        {
+            "code": "CMF",
+            "name": "Correctional Medicine-FP"
+        },
+        {
+            "code": "CN",
+            "name": "Clinical Neurophysiology"
+        },
+        {
+            "code": "COR",
+            "name": "Ophthalmology-Cornea"
+        },
+        {
+            "code": "CR",
+            "name": "Cosmetic & Reconstructive Surgery"
+        },
+        {
+            "code": "CVD",
+            "name": "Cardiovascular Diseases"
+        },
+        {
+            "code": "CVI",
+            "name": "Cardiovascular Imaging"
+        },
+        {
+            "code": "CVS",
+            "name": "Cardiovascular Surgery"
+        },
+        {
+            "code": "D",
+            "name": "Dermatology"
+        },
+        {
+            "code": "DMS",
+            "name": "MOHS Micrographic Surgery"
+        },
+        {
+            "code": "DPD",
+            "name": "Dermatopathology-Derm"
+        },
+        {
+            "code": "DPT",
+            "name": "Dermatopathology"
+        },
+        {
+            "code": "DR",
+            "name": "Diagnostic Radiology"
+        },
+        {
+            "code": "EDM",
+            "name": "Electrodiagnostic Medicine"
+        },
+        {
+            "code": "EM",
+            "name": "Emergency Medicine"
+        },
+        {
+            "code": "EMS",
+            "name": "Emergency Medical Services"
+        },
+        {
+            "code": "END",
+            "name": "Endocrinology"
+        },
+        {
+            "code": "EP",
+            "name": "Electrophysiology"
+        },
+        {
+            "code": "EPI",
+            "name": "Epidemiology"
+        },
+        {
+            "code": "ESM",
+            "name": "Sports Medicine-Emergency Med"
+        },
+        {
+            "code": "ETR",
+            "name": "Emergency/Trauma Radiology"
+        },
+        {
+            "code": "FEM",
+            "name": "Family Medicine/Emergency Med"
+        },
+        {
+            "code": "FOE",
+            "name": "Family Medicine Occupational & Environmental Med"
+        },
+        {
+            "code": "FOM",
+            "name": "Family Medicine/OMT"
+        },
+        {
+            "code": "FOP",
+            "name": "Forensic Pathology"
+        },
+        {
+            "code": "FP",
+            "name": "Family Medicine"
+        },
+        {
+            "code": "FPNM",
+            "name": "Integrated FM/NMM"
+        },
+        {
+            "code": "FPO",
+            "name": "Family Medicine/OMM"
+        },
+        {
+            "code": "FPP",
+            "name": "Family Medicine/Psychiatry"
+        },
+        {
+            "code": "FPS",
+            "name": "Forensic Psychiatry"
+        },
+        {
+            "code": "FUHM",
+            "name": "Undersea and Hyperbaric Medicine-FP"
+        },
+        {
+            "code": "GE",
+            "name": "Gastroenterology"
+        },
+        {
+            "code": "GER",
+            "name": "Geriatrics"
+        },
+        {
+            "code": "GGP",
+            "name": "Geriatrics-General Practice"
+        },
+        {
+            "code": "GIM",
+            "name": "Geriatrics-Internal Medicine"
+        },
+        {
+            "code": "GO",
+            "name": "Gynecological Oncology"
+        },
+        {
+            "code": "GP",
+            "name": "General Practice"
+        },
+        {
+            "code": "GS",
+            "name": "Gynecological Surgery"
+        },
+        {
+            "code": "GVS",
+            "name": "General Vascular Surgery"
+        },
+        {
+            "code": "GYN",
+            "name": "Gynecology"
+        },
+        {
+            "code": "HBM",
+            "name": "Hyperbaric Medicine"
+        },
+        {
+            "code": "HEM",
+            "name": "Hematology"
+        },
+        {
+            "code": "HEO",
+            "name": "Hematology & Oncology"
+        },
+        {
+            "code": "HEP",
+            "name": "Hematology-Pathology"
+        },
+        {
+            "code": "HNS",
+            "name": "Head & Neck Surgery"
+        },
+        {
+            "code": "HPC",
+            "name": "Hospice and Palliative Medicine"
+        },
+        {
+            "code": "HPLT",
+            "name": "Hospitalist"
+        },
+        {
+            "code": "HS",
+            "name": "Hand Surgery"
+        },
+        {
+            "code": "HSO",
+            "name": "Hand Surgery-Orthopedic Surg"
+        },
+        {
+            "code": "HSP",
+            "name": "Hand Surgery-Plastic Surg"
+        },
+        {
+            "code": "HSS",
+            "name": "Hand Surgery-Surgery"
+        },
+        {
+            "code": "HT",
+            "name": "Hair Transplant"
+        },
+        {
+            "code": "IAR",
+            "name": "Int Med/Rehabilitaion"
+        },
+        {
+            "code": "IC",
+            "name": "Interventional Cardiology"
+        },
+        {
+            "code": "ICE",
+            "name": "Cardiac Electrophysiology"
+        },
+        {
+            "code": "ID",
+            "name": "Infectious Diseases"
+        },
+        {
+            "code": "IEM",
+            "name": "Internal Med-Emergency Med"
+        },
+        {
+            "code": "IHP",
+            "name": "Hospice and Palliative Medicine-IM"
+        },
+        {
+            "code": "IM",
+            "name": "Internal Medicine"
+        },
+        {
+            "code": "IMG",
+            "name": "Medical Genetics"
+        },
+        {
+            "code": "IMPM",
+            "name": "Internal Medicine-Preventive Medicine"
+        },
+        {
+            "code": "IMS",
+            "name": "Sleep Medicine-Internal Medicine"
+        },
+        {
+            "code": "IN",
+            "name": "Internship"
+        },
+        {
+            "code": "IP",
+            "name": "Internal Medicine-Psychiatry"
+        },
+        {
+            "code": "IPD",
+            "name": "Internal Med-Pediatrics"
+        },
+        {
+            "code": "IR",
+            "name": "Interventional Radiology"
+        },
+        {
+            "code": "ISM",
+            "name": "Sports Medicine-Internal Med"
+        },
+        {
+            "code": "LBM",
+            "name": "Laboratory Medicine"
+        },
+        {
+            "code": "LM",
+            "name": "Legal Medicine"
+        },
+        {
+            "code": "MAM",
+            "name": "Mammography"
+        },
+        {
+            "code": "MDI",
+            "name": "movement disorders"
+        },
+        {
+            "code": "MFM",
+            "name": "Maternal & Fetal Medicine"
+        },
+        {
+            "code": "MIF",
+            "name": "Medical Informatics"
+        },
+        {
+            "code": "MR",
+            "name": "Musculoskeletal Radiology"
+        },
+        {
+            "code": "N",
+            "name": "Neurology"
+        },
+        {
+            "code": "NE",
+            "name": "Neonatology"
+        },
+        {
+            "code": "NEP",
+            "name": "Nephrology"
+        },
+        {
+            "code": "NHP",
+            "name": "Hospice and Palliative Medicine-NP"
+        },
+        {
+            "code": "NM",
+            "name": "Nuclear Medicine"
+        },
+        {
+            "code": "NMD",
+            "name": "Neuromuscular Disease"
+        },
+        {
+            "code": "NMO",
+            "name": "Neuromusculoskeletal Med/OMM"
+        },
+        {
+            "code": "NMS",
+            "name": "Neuromusculoskeletal Med/OMT"
+        },
+        {
+            "code": "NOP",
+            "name": "Neuro-Ophthalmology"
+        },
+        {
+            "code": "NPM",
+            "name": "Neonatal-Perinatal Medicine"
+        },
+        {
+            "code": "NPN",
+            "name": "Neurophysiology-Neurology"
+        },
+        {
+            "code": "NPS",
+            "name": "Sleep Medicine-Neurology & Psychiatry"
+        },
+        {
+            "code": "NR",
+            "name": "Nuclear Radiology"
+        },
+        {
+            "code": "NRA",
+            "name": "Neuroradiology"
+        },
+        {
+            "code": "NS",
+            "name": "Neurological Surgery"
+        },
+        {
+            "code": "NTR",
+            "name": "Nutrition"
+        },
+        {
+            "code": "OAR",
+            "name": "Adult Reconst Orthopedics"
+        },
+        {
+            "code": "OAS",
+            "name": "Ophthalmology-Anterior Seg"
+        },
+        {
+            "code": "OBG",
+            "name": "Obstetrics & Gynecology"
+        },
+        {
+            "code": "OBS",
+            "name": "Obstetrics"
+        },
+        {
+            "code": "OCM",
+            "name": "Occupational Medicine"
+        },
+        {
+            "code": "OE",
+            "name": "Preventive-Occupation-Envir Me"
+        },
+        {
+            "code": "OEM",
+            "name": "Occupational Environmental Med"
+        },
+        {
+            "code": "OFA",
+            "name": "Orthopedic Foot & Ankle Surg"
+        },
+        {
+            "code": "OGL",
+            "name": "Ophthalmology-Glaucoma"
+        },
+        {
+            "code": "OGS",
+            "name": "Obstetrics & Gynecologic Surg"
+        },
+        {
+            "code": "OM",
+            "name": "Preventive Med-Occupation Med"
+        },
+        {
+            "code": "OMM",
+            "name": "Spec Prof in Osteo Manip Med"
+        },
+        {
+            "code": "OMS",
+            "name": "Sports Medicine-OMM"
+        },
+        {
+            "code": "OMT",
+            "name": "Osteo Manipulative Medicine"
+        },
+        {
+            "code": "ON",
+            "name": "Oncology"
+        },
+        {
+            "code": "OOP",
+            "name": "Otolaryn & Facial Plastic Surg"
+        },
+        {
+            "code": "OP",
+            "name": "Pediatric Orthopedics"
+        },
+        {
+            "code": "OPH",
+            "name": "Ophthalmology"
+        },
+        {
+            "code": "OPL",
+            "name": "Facial Plastic Surgery"
+        },
+        {
+            "code": "OR",
+            "name": "Orthopedics"
+        },
+        {
+            "code": "ORS",
+            "name": "Orthopedic Surgery"
+        },
+        {
+            "code": "ORT",
+            "name": "Orthopedic Trauma"
+        },
+        {
+            "code": "OS",
+            "name": "Other Specialty"
+        },
+        {
+            "code": "OSM",
+            "name": "Sports Medicine-Orthopedic Sur"
+        },
+        {
+            "code": "OSS",
+            "name": "Orthopedic Surgery-Spine"
+        },
+        {
+            "code": "OTL",
+            "name": "Otolaryngology"
+        },
+        {
+            "code": "OTR",
+            "name": "Otorhinolaryngology"
+        },
+        {
+            "code": "P",
+            "name": "Psychiatry"
+        },
+        {
+            "code": "PAI",
+            "name": "Pediatric Allergy & Immunology"
+        },
+        {
+            "code": "PAN",
+            "name": "Pediatric Anesthesiology"
+        },
+        {
+            "code": "PD",
+            "name": "Pediatrics"
+        },
+        {
+            "code": "PDC",
+            "name": "Pediatric Cardiology"
+        },
+        {
+            "code": "PDE",
+            "name": "Pediatric Endocrinology"
+        },
+        {
+            "code": "PDN",
+            "name": "Pediatric Neurology"
+        },
+        {
+            "code": "PDO",
+            "name": "Pediatric Otolaryngology"
+        },
+        {
+            "code": "PDP",
+            "name": "Pediatric Psychiatry"
+        },
+        {
+            "code": "PDR",
+            "name": "Pediatric Rehab Medicine"
+        },
+        {
+            "code": "PDX",
+            "name": "Pediatric Pulmonology"
+        },
+        {
+            "code": "PEM",
+            "name": "Pediatric/Emergency Medicine"
+        },
+        {
+            "code": "PEX",
+            "name": "Physician Executive"
+        },
+        {
+            "code": "PG",
+            "name": "Pediatric Gastroenterology"
+        },
+        {
+            "code": "PH",
+            "name": "Public Health"
+        },
+        {
+            "code": "PHL",
+            "name": "Phlebology"
+        },
+        {
+            "code": "PHM",
+            "name": "Physical Medicine & Rehab"
+        },
+        {
+            "code": "PHO",
+            "name": "Pediatric Hematology-Oncology"
+        },
+        {
+            "code": "PHP",
+            "name": "Preventive Med-Public Health"
+        },
+        {
+            "code": "PIC",
+            "name": "Pediatric Intensive Care"
+        },
+        {
+            "code": "PLM",
+            "name": "Palliative Medicine"
+        },
+        {
+            "code": "PLR",
+            "name": "Plastic & Reconstructive Surg"
+        },
+        {
+            "code": "PM",
+            "name": "Pain Management"
+        },
+        {
+            "code": "PME",
+            "name": "Pain Medicine"
+        },
+        {
+            "code": "PMR",
+            "name": "Pain Management-Rehab Medicine"
+        },
+        {
+            "code": "PO",
+            "name": "Pediatric Ophthalmology"
+        },
+        {
+            "code": "PP",
+            "name": "Pediatric Pathology"
+        },
+        {
+            "code": "PPR",
+            "name": "Pediatric Rheumatology"
+        },
+        {
+            "code": "PR",
+            "name": "Proctology"
+        },
+        {
+            "code": "PRD",
+            "name": "Pediatric Radiology"
+        },
+        {
+            "code": "PRH",
+            "name": "Hospice and Palliative Medicine-PMR"
+        },
+        {
+            "code": "PSM",
+            "name": "Sports Medicine-Peds"
+        },
+        {
+            "code": "PTH",
+            "name": "Pathology"
+        },
+        {
+            "code": "PUC",
+            "name": "Pulmonary-Critical Care"
+        },
+        {
+            "code": "PUD",
+            "name": "Pulmonary Diseases"
+        },
+        {
+            "code": "PUL",
+            "name": "Pulmonary Medicine"
+        },
+        {
+            "code": "PVM",
+            "name": "Preventive Medicine"
+        },
+        {
+            "code": "PVS",
+            "name": "Peripheral Vascular Surgery"
+        },
+        {
+            "code": "PYG",
+            "name": "Geriatric Psychiatry"
+        },
+        {
+            "code": "R",
+            "name": "Radiology"
+        },
+        {
+            "code": "RE",
+            "name": "Reproductive Endocrinology"
+        },
+        {
+            "code": "RHU",
+            "name": "Rheumatology"
+        },
+        {
+            "code": "RI",
+            "name": "Body Imaging"
+        },
+        {
+            "code": "RM",
+            "name": "Rehabilitation Medicine"
+        },
+        {
+            "code": "RMS",
+            "name": "Sports Medicine-Rehab Med"
+        },
+        {
+            "code": "RO",
+            "name": "Radiation Oncology"
+        },
+        {
+            "code": "RTD",
+            "name": "Diagnostic Roentgenology"
+        },
+        {
+            "code": "S",
+            "name": "Surgery-General"
+        },
+        {
+            "code": "SBO",
+            "name": "Surgical Breast Oncology"
+        },
+        {
+            "code": "SCC",
+            "name": "Surgical Critical Care"
+        },
+        {
+            "code": "SCL",
+            "name": "Sclerotherapy"
+        },
+        {
+            "code": "SHP",
+            "name": "Hospice and Palliative Medicine-Surgery"
+        },
+        {
+            "code": "SLM",
+            "name": "Sleep Medicine"
+        },
+        {
+            "code": "SM",
+            "name": "Sports Medicine"
+        },
+        {
+            "code": "SMP",
+            "name": "Sports Medicine Pain Management"
+        },
+        {
+            "code": "SPM",
+            "name": "Spine Medicine"
+        },
+        {
+            "code": "T",
+            "name": "Traditional Internship"
+        },
+        {
+            "code": "TCV",
+            "name": "Thoracic Cardiovascular Surg"
+        },
+        {
+            "code": "TM",
+            "name": "Tropical Medicine"
+        },
+        {
+            "code": "TR",
+            "name": "Radiation Therapy"
+        },
+        {
+            "code": "TRS",
+            "name": "Trauma Surgery"
+        },
+        {
+            "code": "TS",
+            "name": "Thoracic Surgery"
+        },
+        {
+            "code": "TX",
+            "name": "Toxicology"
+        },
+        {
+            "code": "TY",
+            "name": "Transitional Year"
+        },
+        {
+            "code": "U",
+            "name": "Urology"
+        },
+        {
+            "code": "UFP",
+            "name": "Urgent Care-FP"
+        },
+        {
+            "code": "UGY",
+            "name": "Urogynecology"
+        },
+        {
+            "code": "UM",
+            "name": "Undersea Medicine"
+        },
+        {
+            "code": "UON",
+            "name": "Urologic Oncology"
+        },
+        {
+            "code": "UP",
+            "name": "Pediatric Urology"
+        },
+        {
+            "code": "URS",
+            "name": "Urological Surgery"
+        },
+        {
+            "code": "VDR",
+            "name": "Vascular Radiology"
+        },
+        {
+            "code": "VIR",
+            "name": "Vascular/Intrvnt Radiol"
+        },
+        {
+            "code": "VRS",
+            "name": "Ophthalmology-Vitreous Surg"
+        },
+        {
+            "code": "VS",
+            "name": "Vascular Surgery"
+        }
+    ]
+}

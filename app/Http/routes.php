@@ -31,6 +31,7 @@ Route::group(['prefix' => 'api/v1'], function() {
      *
      */
     Route::get('specialties/search', 'SpecialtiesController@search');
+    Route::get('specialties', 'SpecialtiesController@index');
 
 
     /**
@@ -38,6 +39,8 @@ Route::group(['prefix' => 'api/v1'], function() {
      *
      */
     Route::get('test/locations', 'LocationsController@testSearch');
+
+    Route::get('text/locations', 'LocationsController@withinDistance');
 
 });
 

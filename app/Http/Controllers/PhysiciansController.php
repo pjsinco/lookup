@@ -39,7 +39,14 @@ class PhysiciansController extends ApiController
      */
     public function search(Request $request)
     {
-        //$input = $request->input();
+        // ?city=Warrenville
+        // &state=SC
+        // &zip=
+        // &lat=33.518108
+        // &lon=-81.820849
+        // &what=
+        // &location=Warrenville%2C+SC
+
         $name = $request->name;
         $city = $request->city;
 

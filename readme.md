@@ -195,3 +195,6 @@ locations table
 
 ######Wed Aug 19 07:04:35 2015 CDT
 * We can prefetch the specialty data. Yes?
+* Blog: [Miles to Latitude and Miles to Longitude Converter](http://snipplr.com/view/67019/miles-to-latitude-and-miles-to-longitude-converter/)
+* Google Developers: [Creating a Store Locator with PHP, MySQL & Google Maps](https://developers.google.com/maps/articles/phpsqlsearch_v3)
+* Drawing a radius around a point we use the Haversine formula

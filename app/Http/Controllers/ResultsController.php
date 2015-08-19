@@ -27,4 +27,11 @@ class ResultsController extends Controller
 
 dd($results->all());
     }
+
+    public function search(Request $request)
+    {
+
+        $distance = 25;
+// unfinished
+    }
 }
