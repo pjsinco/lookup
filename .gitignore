@@ -8,5 +8,9 @@ Homestead.yaml
 /database/seeds/data/cityzip.csv
 /database/seeds/data/finda*.csv
 /database/seeds/data/*premium*
+/database/seeds/data/geocoded
+/database/seeds/data/finda*.txt
+/database/seeds/data/*.xls
+/database/seeds/data/*.xlsx
 *.swo
 *.swp

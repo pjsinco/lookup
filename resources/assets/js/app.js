@@ -128,7 +128,11 @@
      */
     $('#location').bind('typeahead:selected', function(evt, suggestion, dataset) {
 
-        console.log('Suggestion: ' + suggestion.value);
+        console.log('suggestion.value: ' + suggestion.value);
+        console.log('suggestion.city: ' + suggestion.city);
+        console.log('suggestion.state: ' + suggestion.state);
+        console.log('suggestion.lat: ' + suggestion.lat);
+        console.log('suggestion.lon: ' + suggestion.lon);
         console.log(evt);
         loc.city = suggestion.city;
         loc.state = suggestion.state;
@@ -147,6 +151,24 @@
         
     });
 
+    $('#location').bind('typeahead:autocompleted', function(evt, suggestion) {
+        updateLocation(suggestion);
+        updateFormInputsWithLocations();
+        console.log('Autocompleted');
+        console.log('Suggestion.value: ' + suggestion.city);
+        locations.get(suggestion.city, function(d) {
+            console.log(d);
+        })
+    });
+
+    function updateLocation(suggestion) {
+        loc.city = suggestion.city;
+        loc.state = suggestion.state;
+        loc.zip = suggestion.zip;
+        loc.lat = suggestion.lat;
+        loc.lon = suggestion.lon;
+    }
+
     function updateFormInputsWithLocations() {
             $('.city').val(loc.city);
             $('.state').val(loc.state);
@@ -154,14 +176,38 @@
             $('.lat').val(loc.lat);
             $('.lon').val(loc.lon);
     }
+    
+    /**
+     * Try to find a match for an un-autocompleted location input
+     *
+     */
+    function tryToAutocomplete(query) {
+        var x = []
+        locations.get(query, function(suggestions) {
+    
+            // TODO
+            // overly simplistic for now 
+            // -- doesn't care about the state, 
+            //    just grabs the first matching city
+            suggestions.forEach(function(suggestion) {
+                if (suggestion.city.toLowerCase() == query.toLowerCase()) {
+                    $('#location').typeahead('val', suggestion.value);
+                    updateLocation(suggestion);
+                    updateFormInputsWithLocations();
+                }
+            });
+        });
+    }
 
     function parseLocationField(input) {
-
+        
     }
 
     $('#location').on('blur', function(evt) {
         console.log('blurred');
-        updateFormInputsWithLocations();
+        console.log('value: ' + evt.currentTarget.value);
+        tryToAutocomplete(evt.currentTarget.value);
+        //updateFormInputsWithLocations();
     });
 
 
