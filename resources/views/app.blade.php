@@ -17,6 +17,12 @@
     <script src="{{ asset('/js/jquery.tooltipster.js') }}" type="text/javascript" charset="utf-8"></script>
     <script src="{{ asset('/js/underscore.min.js') }}" type="text/javascript" charset="utf-8"></script>
     <script src="{{ asset('/js/app.js') }}" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            FindADo.init();
+        });
+    </script>
+    
 
     @yield('script')
 

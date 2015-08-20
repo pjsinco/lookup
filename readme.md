@@ -198,3 +198,33 @@ locations table
 * Blog: [Miles to Latitude and Miles to Longitude Converter](http://snipplr.com/view/67019/miles-to-latitude-and-miles-to-longitude-converter/)
 * Google Developers: [Creating a Store Locator with PHP, MySQL & Google Maps](https://developers.google.com/maps/articles/phpsqlsearch_v3)
 * Drawing a radius around a point we use the Haversine formula
+
+#####Thu Aug 20 09:00:11 2015 CDT
+* StackOverflow: [JS module pattern](http://stackoverflow.com/questions/27801062/is-it-possible-to-wrap-a-single-jquery-document-ready-event-around-a-scriptbundl):  
+    "If you're looking at the JavaScript files that you wrote (not jquery-{version}.js), then create a method that will be publicly accessible from outside your files that you call on the page."
+
+    ```js
+    var Application = (function () {
+        // All your code
+
+        function init() {
+            // All your code that you have inside $(document).ready()
+        }
+
+        return {
+            init: init
+        };
+    }());
+    ```
+    "Do the above for all of your files, then on any page that needs it, or in your _Layout page if it's going to run on every page have the following at the bottom"
+    ```html
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Application.init();
+            // etc for the other files.
+        });
+    </script>
+
+    ```
+
+* StackOverflow: [ZIP Code (US Postal Code) validation](http://stackoverflow.com/questions/160550/zip-code-us-postal-code-validation)
