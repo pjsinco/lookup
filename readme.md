@@ -240,3 +240,12 @@ locations table
     // of course to revert the fetch mode you need to set it again
     DB::setFetchMode(PDO::FETCH_CLASS);
     ```
+
+* SQLSRV:
+    * Blog: [Connecting PHP to Microsoft SQL Server on Linux](https://davejamesmiller.com/blog/connecting-php-to-microsoft-sql-server-on-linux)
+    * Laracasts forum: [sqlsrv driver on Linux?](https://laracasts.com/discuss/channels/general-discussion/sqlsrv-driver-on-linux)
+    * Disable SELinux:
+    ```
+    vagrant@homestead:~$ setsebool -P httpd_can_network_connect_db 1
+    setsebool:  SELinux is disabled.
+    ```
