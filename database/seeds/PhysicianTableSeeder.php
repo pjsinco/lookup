@@ -56,7 +56,7 @@ class PhysicianTableSeeder extends Seeder
                 'Email'                      => $row[26],
                 'ABMS'                       => $row[27],
                 'lat'                        => $row[28],
-                'ABMS'                       => $row[29],
+                'lon'                        => $row[29],
             ]);
         }
     }

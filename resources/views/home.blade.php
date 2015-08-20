@@ -18,7 +18,7 @@
             {!! Form::hidden('lon', null, ['class' => 'lon']) !!}
             <div class="form-group">
                 {{-- Form::label('location') --}}
-                {!! Form::text('what', null, ['class' => 'form-control input-lg', 'id' => 'physician', 'placeholder' => 'Search by name or specialty']) !!}
+                {!! Form::text('what', null, ['class' => 'form-control input-lg', 'id' => 'what', 'placeholder' => 'Search by name or specialty']) !!}
             </div>
             <div class="form-group">
                 {{-- Form::label('location') --}}

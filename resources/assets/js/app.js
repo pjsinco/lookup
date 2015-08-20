@@ -3,7 +3,7 @@ var FindADo = (function() {
     function init() {
 
         var $locInput = $('#location');
-        var $physInput = $('#physician');
+        var $whatInput = $('#what');
         var locationResolved = false;
 
         var location = {
@@ -289,7 +289,7 @@ var FindADo = (function() {
         physicians.initialize();
         specialties.initialize();
 
-        $physInput.typeahead({
+        $whatInput.typeahead({
             hint: false,
             highlight: true,
             minLength: 2,
