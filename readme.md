@@ -261,3 +261,4 @@ locations table
     vagrant@homestead:~$ setsebool -P httpd_can_network_connect_db 1
     setsebool:  SELinux is disabled.
     ```
+    * Laracasts forum: [Connect Laravel to Microsoft SQL](https://laracasts.com/discuss/channels/general-discussion/connect-laravel-to-microsoft-sql)
