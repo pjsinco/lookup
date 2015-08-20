@@ -39,6 +39,8 @@ class PhysicianTransformer extends Transformer
             'website' => $phys['website'],
             'aoa_cert' => $phys['AOABoardCertified'],
             'abms_cert' => $phys['ABMS'],
+            'lat' => $phys['lat'],
+            'lon' => $phys['lon'],
         ];
 
     }
