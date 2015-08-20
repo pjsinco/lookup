@@ -241,8 +241,16 @@ locations table
     DB::setFetchMode(PDO::FETCH_CLASS);
     ```
 
-* SQLSRV:
+* sqlsrv/mssql: Connecting to Imis
     * Blog: [Connecting PHP to Microsoft SQL Server on Linux](https://davejamesmiller.com/blog/connecting-php-to-microsoft-sql-server-on-linux)
+        * Hard to say, but I think this one helped the most
+        * Note configuration in /etc/freetds/freetds.conf
+            ```
+            [imis]
+                 host = sql05-1.aoanet.local
+                 port = 1433
+                 tds version = 8.0
+            ```
     * Laracasts forum: [sqlsrv driver on Linux?](https://laracasts.com/discuss/channels/general-discussion/sqlsrv-driver-on-linux)
     * Disable SELinux:
     ```
