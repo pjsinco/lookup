@@ -22,18 +22,11 @@ var FindADo = (function() {
             $locInput.load('api/v1/locations/random', 
                 function(responseText, textStatus, jqXHR) {
                     var json = JSON.parse(responseText);
-                    location.city = json.data.city;
-                    location.state = json.data.state;
-                    location.zip = json.data.zip;
-                    location.lat = json.data.lat;
-                    location.lon = json.data.lon;
+                    updateLocation(json.data);
 
-                    $(this).val(json.data.city + ', ' + json.data.state + ' ' + json.data.zip );
-                $('.city').val(location.city);
-                $('.state').val(location.state);
-                $('.zip').val(location.zip);
-                $('.lat').val(location.lat);
-                $('.lon').val(location.lon);
+                    $(this).typeahead('val', json.data.city + ', ' + json.data.state + ' ' + json.data.zip );
+
+                    updateFormInputs(location);
             });
         };
 
@@ -131,7 +124,7 @@ var FindADo = (function() {
             // TODO 
             // needs work
             $locInput.on('blur', function(evt) {
-                updateFormInputsWithLocations();
+                updateFormInputs(location);
                 console.log($('.city').val());
                 console.log($('.state').val());
                 console.log($('.zip').val());
@@ -140,7 +133,7 @@ var FindADo = (function() {
 
         $locInput.bind('typeahead:autocompleted', function(evt, suggestion) {
             updateLocation(suggestion);
-            updateFormInputsWithLocations();
+            updateFormInputs(location);
             console.log('Autocompleted');
             console.log('Suggestion.value: ' + suggestion.city);
             locations.get(suggestion.city, function(d) {
@@ -149,19 +142,25 @@ var FindADo = (function() {
         });
 
         function updateLocation(suggestion) {
+            console.info('From inside updateLocation, here\'s the passed in object: ');
+            console.dir(suggestion);
             location.city = suggestion.city;
             location.state = suggestion.state;
             location.zip = suggestion.zip;
             location.lat = suggestion.lat;
             location.lon = suggestion.lon;
+            console.info('Location object updated');
+        
         }
 
-        function updateFormInputsWithLocations() {
-                $('.city').val(location.city);
-                $('.state').val(location.state);
-                $('.zip').val(location.zip);
-                $('.lat').val(location.lat);
-                $('.lon').val(location.lon);
+        function updateFormInputs(loc) {
+            $('.city').val(loc.city);
+            $('.state').val(loc.state);
+            $('.zip').val(loc.zip);
+            $('.lat').val(loc.lat);
+            $('.lon').val(loc.lon);
+
+            console.info('Form inputs updated');
         }
         
         /**
@@ -177,8 +176,20 @@ var FindADo = (function() {
         }
 
         function loadZip(zip) {
-            $.get(
-                
+            $locInput.load('api/v1/locations/zip?' + $.param({q: zip}),
+                function(responseText, textStatus, jqXHR) {
+                    console.log(textStatus);
+                    var jsonLocation = JSON.parse(responseText);
+                    if (textStatus == 'success') {
+                        var locInfo = jsonLocation.data[0];
+                        updateLocation(locInfo);
+                        updateFormInputs(locInfo);
+                        $(this).typeahead(
+                            'val', 
+                            locInfo.city + ', ' + locInfo.state + ' ' + locInfo.zip
+                        );
+                    }
+                }
             );
         }
 
@@ -187,10 +198,11 @@ var FindADo = (function() {
          *
          */
         function resolveLocation(query) {
-            console.info('resolving location');
+            console.info('Attempting to resolve location ...');
             if (isZipCode(query.trim())) {
                 console.log('is zip code');
                 loadZip(query.trim());
+                return;
             }
 
             var x = []
@@ -202,8 +214,9 @@ var FindADo = (function() {
                 suggestions.forEach(function(suggestion) {
                     if (suggestion.city.toLowerCase() == query.toLowerCase()) {
                         $locInput.typeahead('val', suggestion.value);
+                        console.info('Location resolved!');
                         updateLocation(suggestion);
-                        updateFormInputsWithLocations();
+                        updateFormInputs(location);
                     }
                 });
             });

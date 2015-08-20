@@ -45,6 +45,33 @@ class LocationsController extends ApiController
         return mb_strpos($string, ',') > 0;
     }
 
+    /**
+     * Get locations based on Zip code.
+     *
+     * @param string
+     * @return json
+     */
+    public function searchByZip(Request $request)
+    {
+        $locations = App\Location::where('zip', '=', $request->q)
+            ->get();
+
+        if (! $locations->isEmpty()) {
+            return $this->respond([
+                'data' =>
+                    $this->locationTransformer->transformCollection($locations->all())
+            ]);
+        }
+
+        return Response::json([
+            'error' => [
+                'message' => 'Location not found',
+                'status_code' => 404,
+            ]
+        ], 404);
+
+    }
+
     public function search(Request $request)
     {
         $location = $request->q;
@@ -71,7 +98,7 @@ class LocationsController extends ApiController
                 ->get();
         }
         
-        if ($locations) {
+        if (! $locations->isEmpty()) {
             return $this->respond([
                 'data' =>
                     $this->locationTransformer->transformCollection($locations->all())
@@ -138,7 +165,7 @@ class LocationsController extends ApiController
             ->groupBy(['city', 'zip'])
             ->get();
         
-        if ($locations) {
+        if (! $locations->isEmpty()) {
             return Response::json($locations, 200);
         }
 
