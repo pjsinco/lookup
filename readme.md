@@ -251,6 +251,10 @@ locations table
                  port = 1433
                  tds version = 8.0
             ```
+        * Command to test connection:
+            ```
+            tsql -H imis -p 1433 -U psinco_ro -P Read5Only -D imis
+            ```
     * Laracasts forum: [sqlsrv driver on Linux?](https://laracasts.com/discuss/channels/general-discussion/sqlsrv-driver-on-linux)
     * Disable SELinux:
     ```
