@@ -42,6 +42,8 @@ class CreatePhysiciansTable extends Migration
             $table->string('Phone');
             $table->string('Email');
             $table->boolean('ABMS');
+            $table->float('lat', 10, 6);
+            $table->float('lon', 10, 6);
         });
     }
 

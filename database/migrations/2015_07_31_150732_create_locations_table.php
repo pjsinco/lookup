@@ -17,8 +17,8 @@ class CreateLocationsTable extends Migration
             $table->char('state', 2);
             $table->string('city')->index();
             $table->char('zip', 5)->index();
-            $table->double('lat', '9', '6');
-            $table->double('lon', '9', '6');
+            $table->float('lat', 10, 6);
+            $table->float('lon', 10, 6);
         });
     }
 
