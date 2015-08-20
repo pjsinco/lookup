@@ -228,3 +228,15 @@ locations table
     ```
 
 * StackOverflow: [ZIP Code (US Postal Code) validation](http://stackoverflow.com/questions/160550/zip-code-us-postal-code-validation)
+
+* StackOverflow: [Convert laravel object to array](http://stackoverflow.com/questions/26174267/convert-laravel-object-to-array)
+    * Kind of a hack:
+    ```php
+    DB::setFetchMode(PDO::FETCH_ASSOC);
+    
+    // then
+    DB::table(..)->get(); // array of arrays instead of objects
+    
+    // of course to revert the fetch mode you need to set it again
+    DB::setFetchMode(PDO::FETCH_CLASS);
+    ```
