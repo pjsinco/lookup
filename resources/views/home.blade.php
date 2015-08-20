@@ -10,7 +10,7 @@
     <hr />
     <div class="row">
         <div class="col-xs-12">
-        {!! Form::open(['url' => '/results', 'method' => 'GET', 'class' => 'form-inline finda']) !!}
+        {!! Form::open(['url' => '/physicians/search', 'method' => 'GET', 'class' => 'form-inline finda']) !!}
             {!! Form::hidden('city', null, ['class' => 'city']) !!}
             {!! Form::hidden('state', null, ['class' => 'state']) !!}
             {!! Form::hidden('zip', null, ['class' => 'zip']) !!}

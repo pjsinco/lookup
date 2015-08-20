@@ -244,9 +244,9 @@ var FindADo = (function() {
             remote: {
                 url: 'api/v1/physicians/search',
                 replace: function(url, uriEncodedQuery) {
-                    return url + '?name=' + uriEncodedQuery + '&city=' + location.city;
+                    var params = $.param(location);
+                    return url + '?name=' + uriEncodedQuery + '&' + params;
                 },
-                //wildcard: '%QUERY',
                 filter: function(physicians) {
                     return $.map(physicians, function(d) {
                         return $.map(d, function(e) {

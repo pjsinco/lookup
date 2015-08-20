@@ -182,7 +182,7 @@ class LocationsController extends ApiController
         
     }
 
-    public function withinDistance($lat, $lon, $distance)
+    public function withinDistance(Request $request)
     {
         $q =
         "SELECT 
