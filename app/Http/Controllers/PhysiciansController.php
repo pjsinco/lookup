@@ -102,36 +102,22 @@ class PhysiciansController extends ApiController
          * &location=Washington%2C+DC+20221
          *
          */
+        $distance = 25;
+        $haversineSelect  = "*, (3959 * acos( cos( radians(" . $request->lat;
+        $haversineSelect .= ") ) * cos( radians( lat ) ) * ";
+        $haversineSelect .= "cos( radians( lon ) - radians(" . $request->lon;
+        $haversineSelect .= ") ) + sin( radians(" . $request->lat . ") ) ";
+        $haversineSelect .= "* sin( radians( lat ) ) ) ) AS distance";
 
         if ($request->ajax()) {
-            $lat = $request->lat;
-            $lon = $request->lon;
-            $name = $request->name;
 
             if ($request->has('lat') && $request->has('lon') && $request->has('name')) {
-                $distance = 25;
-                $selectStmt  = "*, (3959 * acos( cos( radians(" . $lat;
-                $selectStmt .= ") ) * cos( radians( lat ) ) * ";
-                $selectStmt .= "cos( radians( lon ) - radians(" . $lon;
-                $selectStmt .= ") ) + sin( radians(" . $lat . ") ) ";
-                $selectStmt .= "* sin( radians( lat ) ) ) ) AS distance";
-
-                $q = "
-                    SELECT 
-                        *, 
-                        (3959 * acos( cos( radians(" . $lat  . ") ) * cos( radians( lat ) ) * cos( radians( lon ) - radians(" . $lon . ") ) + sin( radians(" . $lat . ") ) * sin( radians( lat ) ) ) ) AS distance
-                    FROM locations
-                    WHERE `last_name` like '$name'
-                        or `first_name` like '$name'
-                    HAVING distance < $distance
-                    ORDER BY distance ASC
-                ";
 
                 DB::setFetchMode(\PDO::FETCH_ASSOC);
                 $physicians = DB::table('physicians')
-                    ->select(DB::raw($selectStmt))
-                    ->where('last_name', 'like', $name . '%')
-                    ->orWhere('first_name', 'like', $name . '%')
+                    ->select(DB::raw($haversineSelect))
+                    ->where('last_name', 'like', $request->name . '%')
+                    ->orWhere('first_name', 'like', $request->name . '%')
                     ->having('distance', '<', $distance)
                     ->orderBy('distance', 'asc')
                     ->get();
@@ -153,6 +139,48 @@ class PhysiciansController extends ApiController
             }
         }
 
+        /**
+         * "city" => "Long Pine"
+         * "state" => "NE"
+         * "zip" => "69217"
+         * "lat" => "42.436196"
+         * "lon" => "-99.750801"
+         * "s_code" => "OR"
+         * "specialty" => "Orthopedics"
+         * "location" => "Long Pine, NE 69217"
+         * 
+         * "city" => "Nakina"
+         * "state" => "NC"
+         * "zip" => "28455"
+         * "lat" => "34.112441"
+         * "lon" => "-78.653824"
+         * "s_code" => ""
+         * "specialty" => ""
+         * "location" => "Nakina, NC 28455"
+         */
+
+        //DB::setFetchMode(\PDO::FETCH_ASSOC);
+        if ($request->has('s_code')) {
+            $physicians = DB::table('physicians')
+                ->select(DB::raw($haversineSelect))
+                ->where('PrimaryPracticeFocusCode', '=', $request->s_code )
+                ->having('distance', '<', $distance)
+                ->orderBy('distance', 'asc')
+                ->get();
+        } else {
+            $physicians = DB::table('physicians')
+                ->select(DB::raw($haversineSelect))
+                ->having('distance', '<', $distance)
+                ->orderBy('distance', 'asc')
+                ->get();
+        }
+        //DB::setFetchMode(\PDO::FETCH_CLASS);
+
+        return view('search.results')
+            ->with('physicians', $physicians)
+            ->with('city', $request->city)
+            ->with('state', $request->state)
+            ->with('specialty', $request->specialty);
         
         
     }
