@@ -13,7 +13,7 @@ class LocationTableSeeder extends Seeder
     {
         DB::table('locations')->truncate();
 
-        $locations = $this->getCsv('premium.csv');
+        $locations = $this->getCsv('locations-2015-07-21.csv');
         $this->seedTable($locations);
     }
 
