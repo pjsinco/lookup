@@ -10,15 +10,16 @@
     <hr />
     <div class="row">
         <div class="col-xs-12">
-        {!! Form::open(['url' => '/physicians/search', 'method' => 'GET', 'class' => 'form-inline finda']) !!}
+        {!! Form::open(['url' => '/physicians/search', 'method' => 'GET', 'id' => 'findADo', 'name' => 'findADo', 'class' => 'form-inline findADo']) !!}
             {!! Form::hidden('city', null, ['class' => 'city']) !!}
             {!! Form::hidden('state', null, ['class' => 'state']) !!}
             {!! Form::hidden('zip', null, ['class' => 'zip']) !!}
             {!! Form::hidden('lat', null, ['class' => 'lat']) !!}
             {!! Form::hidden('lon', null, ['class' => 'lon']) !!}
+            {!! Form::hidden('s_code', null, ['class' => 's_code']) !!}
             <div class="form-group">
                 {{-- Form::label('location') --}}
-                {!! Form::text('what', null, ['class' => 'form-control input-lg', 'id' => 'what', 'placeholder' => 'Search by name or specialty']) !!}
+                {!! Form::text('specialty', null, ['class' => 'form-control input-lg', 'id' => 'specialty', 'placeholder' => 'Search by name or specialty']) !!}
             </div>
             <div class="form-group">
                 {{-- Form::label('location') --}}

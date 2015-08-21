@@ -3,7 +3,8 @@ var FindADo = (function() {
     function init() {
 
         var $locInput = $('#location');
-        var $whatInput = $('#what');
+        var $specialtyInput = $('#specialty');
+        var $findaForm = $('#findADo');
         var locationResolved = false;
 
         var location = {
@@ -24,9 +25,10 @@ var FindADo = (function() {
                     var json = JSON.parse(responseText);
                     updateLocation(json.data);
 
-                    $(this).typeahead('val', json.data.city + ', ' + json.data.state + ' ' + json.data.zip );
+                    $(this).typeahead('val', json.data.city + ', ' + 
+                        json.data.state + ' ' + json.data.zip );
 
-                    updateFormInputs(location);
+                    updateFormLocationInputs(location);
             });
         };
 
@@ -109,22 +111,19 @@ var FindADo = (function() {
          *
          */
         $locInput.bind('typeahead:selected', function(evt, suggestion, dataset) {
+            console.info('event fired: selected on #location');
             console.log('suggestion.value: ' + suggestion.value);
             console.log('suggestion.city: ' + suggestion.city);
             console.log('suggestion.state: ' + suggestion.state);
             console.log('suggestion.lat: ' + suggestion.lat);
             console.log('suggestion.lon: ' + suggestion.lon);
-            console.log(evt);
-            location.city = suggestion.city;
-            location.state = suggestion.state;
-            location.zip = suggestion.zip;
-            location.lat = suggestion.lat;
-            location.lon = suggestion.lon;
+            //console.log(evt);
+            updateLocation(suggestion);
 
             // TODO 
             // needs work
             $locInput.on('blur', function(evt) {
-                updateFormInputs(location);
+                updateFormLocationInputs(location);
                 console.log($('.city').val());
                 console.log($('.state').val());
                 console.log($('.zip').val());
@@ -132,28 +131,27 @@ var FindADo = (function() {
         });
 
         $locInput.bind('typeahead:autocompleted', function(evt, suggestion) {
-            updateLocation(suggestion);
-            updateFormInputs(location);
-            console.log('Autocompleted');
-            console.log('Suggestion.value: ' + suggestion.city);
-            locations.get(suggestion.city, function(d) {
-                console.log(d);
-            })
+//            updateLocation(suggestion);
+//            updateFormInputs(location);
+            console.info('event fired: autocompleted');
+//            console.log('Suggestion.value: ' + suggestion.city);
+//            locations.get(suggestion.city, function(d) {
+//                console.log(d);
+//            })
         });
 
         function updateLocation(suggestion) {
-            console.info('From inside updateLocation, here\'s the passed in object: ');
-            console.dir(suggestion);
+            //console.info('From inside updateLocation, here\'s the passed in object: ');
+            //console.dir(suggestion);
             location.city = suggestion.city;
             location.state = suggestion.state;
             location.zip = suggestion.zip;
             location.lat = suggestion.lat;
             location.lon = suggestion.lon;
             console.info('Location object updated');
-        
         }
 
-        function updateFormInputs(loc) {
+        function updateFormLocationInputs(loc) {
             $('.city').val(loc.city);
             $('.state').val(loc.state);
             $('.zip').val(loc.zip);
@@ -183,7 +181,7 @@ var FindADo = (function() {
                     if (textStatus == 'success') {
                         var locInfo = jsonLocation.data[0];
                         updateLocation(locInfo);
-                        updateFormInputs(locInfo);
+                        updateFormLocationInputs(locInfo);
                         $(this).typeahead(
                             'val', 
                             locInfo.city + ', ' + locInfo.state + ' ' + locInfo.zip
@@ -216,7 +214,7 @@ var FindADo = (function() {
                         $locInput.typeahead('val', suggestion.value);
                         console.info('Location resolved!');
                         updateLocation(suggestion);
-                        updateFormInputs(location);
+                        updateFormLocationInputs(location);
                     }
                 });
             });
@@ -289,7 +287,7 @@ var FindADo = (function() {
         physicians.initialize();
         specialties.initialize();
 
-        $whatInput.typeahead({
+        $specialtyInput.typeahead({
             hint: false,
             highlight: true,
             minLength: 2,
@@ -321,6 +319,15 @@ var FindADo = (function() {
                     return '<div><a href="#">' + data.value + "</a></div>";
                 }
             }
+        });
+
+        function updateFormSpecialtyInputs(specialty) {
+            $('.s_code').val(specialty.code);
+            console.info('hidden specialty code field updated');
+        }
+
+        $specialtyInput.bind('typeahead:selected', function(evt, suggestion) {
+            updateFormSpecialtyInputs(suggestion);
         });
 
         /**

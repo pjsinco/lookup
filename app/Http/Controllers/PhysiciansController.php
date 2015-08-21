@@ -90,59 +90,70 @@ class PhysiciansController extends ApiController
          * &zip=
          * &lat=42.377411
          * &lon=-74.056683
-         * &what=Robert+N.+Pedowitz%2C+DO
+         * &what=
          * &location=Freehold%2C+NY
+         *
+         * ?city=Washington
+         * &state=DC
+         * &zip=20221
+         * &lat=38.894103
+         * &lon=-77.028884
+         * &what=Pediatrics
+         * &location=Washington%2C+DC+20221
          *
          */
 
         if ($request->ajax()) {
-            $name = $request->name;
             $lat = $request->lat;
             $lon = $request->lon;
+            $name = $request->name;
 
-        }
+            if ($request->has('lat') && $request->has('lon') && $request->has('name')) {
+                $distance = 25;
+                $selectStmt  = "*, (3959 * acos( cos( radians(" . $lat;
+                $selectStmt .= ") ) * cos( radians( lat ) ) * ";
+                $selectStmt .= "cos( radians( lon ) - radians(" . $lon;
+                $selectStmt .= ") ) + sin( radians(" . $lat . ") ) ";
+                $selectStmt .= "* sin( radians( lat ) ) ) ) AS distance";
 
+                $q = "
+                    SELECT 
+                        *, 
+                        (3959 * acos( cos( radians(" . $lat  . ") ) * cos( radians( lat ) ) * cos( radians( lon ) - radians(" . $lon . ") ) + sin( radians(" . $lat . ") ) * sin( radians( lat ) ) ) ) AS distance
+                    FROM locations
+                    WHERE `last_name` like '$name'
+                        or `first_name` like '$name'
+                    HAVING distance < $distance
+                    ORDER BY distance ASC
+                ";
 
-        if ($request->has('lat') && $request->has('lon') && $request->has('name')) {
+                DB::setFetchMode(\PDO::FETCH_ASSOC);
+                $physicians = DB::table('physicians')
+                    ->select(DB::raw($selectStmt))
+                    ->where('last_name', 'like', $name . '%')
+                    ->orWhere('first_name', 'like', $name . '%')
+                    ->having('distance', '<', $distance)
+                    ->orderBy('distance', 'asc')
+                    ->get();
+                DB::setFetchMode(\PDO::FETCH_CLASS);
 
-            $distance = 25;
-            $selectStatement = "*, (3959 * acos( cos( radians(" . $lat  . ") ) * cos( radians( lat ) ) * cos( radians( lon ) - radians(" . $lon . ") ) + sin( radians(" . $lat . ") ) * sin( radians( lat ) ) ) ) AS distance";
+                if (! empty($physicians)) {
+                    return $this->respond([
+                        'data' => 
+                            $this->physicianTransformer->transformCollection($physicians)
+                    ]);
+                }
 
-            $q = "
-                SELECT 
-                    *, 
-                    (3959 * acos( cos( radians(" . $lat  . ") ) * cos( radians( lat ) ) * cos( radians( lon ) - radians(" . $lon . ") ) + sin( radians(" . $lat . ") ) * sin( radians( lat ) ) ) ) AS distance
-                FROM locations
-                WHERE `last_name` like '$name'
-                    or `first_name` like '$name'
-                HAVING distance < $distance
-                ORDER BY distance ASC
-            ";
-
-            DB::setFetchMode(\PDO::FETCH_ASSOC);
-            $physicians = DB::table('physicians')
-                ->select(DB::raw($selectStatement))
-                ->where('last_name', 'like', $name . '%')
-                ->orWhere('first_name', 'like', $name . '%')
-                ->having('distance', '<', $distance)
-                ->orderBy('distance', 'asc')
-                ->get();
-            DB::setFetchMode(\PDO::FETCH_CLASS);
-
-            if (! empty($physicians)) {
-                return $this->respond([
-                    'data' => 
-                        $this->physicianTransformer->transformCollection($physicians)
-                ]);
+                return Response::json([
+                    'error' => [
+                        'message' => 'No physicians found',
+                        'status_code' => 404,
+                    ]
+                ], 404);
             }
-
-            return Response::json([
-                'error' => [
-                    'message' => 'No physicians found',
-                    'status_code' => 404,
-                ]
-            ], 404);
         }
+
+        
         
     }
 }
