@@ -3,8 +3,6 @@ var $ = require('jquery'),
     Location = require('./location.js'),
     locSearch = require('./location-typeahead.js');
 
-
-
 var FindADoForm = function(opts) {
 
     this.defaultSettings = {
@@ -29,13 +27,6 @@ var FindADoForm = function(opts) {
     this.locationSearch = new locSearch({ input: this.$locInput });
 };
 
-                
-// $(this).typeahead('val', json.data.city + ', ' + 
-//                        json.data.state + ' ' + json.data.zip );
-//
-//                    updateFormLocationInputs(location);
-
-
 FindADoForm.prototype.init = function() {
     this.locationSearch.init();
 };
@@ -48,22 +39,6 @@ FindADoForm.prototype.loadLocation = function() {
         self.updateHidden(data);
         self.locationSearch.update(data);
     });
-};
-
-
-FindADoForm.prototype.hiya = function() {
-    console.log('hiya');
-}
-
-FindADoForm.prototype.getLocTypeahead = function() {
-
-    return;
-
-}
-
-FindADoForm.prototype.updateLocAutocomplete = function(data) {
-
-
 };
 
 FindADoForm.prototype.getRandomLocation = function(callback) {
@@ -97,5 +72,4 @@ FindADoForm.prototype.updateHidden = function(loc) {
     this.$hiddenLon.val(loc.lon);
 };
 
-FindADoForm.proto
 module.exports = FindADoForm;
