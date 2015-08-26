@@ -1,39 +1,68 @@
 var $ = require('jquery'),
-    Location = require('./location'),
-    //typeahead = require('typeahead.js');
-    typeahead = require('./typeahead.0.10.5');
+    _ = require('underscore')
+    Location = require('./location.js'),
+    locSearch = require('./location-typeahead.js');
 
 
-var FindADoForm = function(formId, specialtyInput, locationInput) {
 
-    this.$formId = $(formId);
-    this.$specialtyInput = $(specialtyInput);
-    this.$locInput = $(locationInput);
+var FindADoForm = function(opts) {
+
+    this.defaultSettings = {
+        formId: '#findADo',
+        locationInput: '#location',
+        specialtyInput: '#specialty'
+    };
+
+    this.settings = 
+        opts ? _.defaults(opts, this.defaultSettings) : this.defaultSettings;
+
+    this.$formId = $(this.settings.formId);
+    this.$specialtyInput = $(this.settings.specialtyInput);
+    this.$locInput = $(this.settings.locationInput);
+
     this.$hiddenCity = this.$formId.find('#city');
     this.$hiddenState = this.$formId.find('#state');
     this.$hiddenZip = this.$formId.find('#zip');
     this.$hiddenLat = this.$formId.find('#lat');
     this.$hiddenLon = this.$formId.find('#lon');
-    this.location = {};
 
+    this.locationSearch = new locSearch({ input: this.$locInput });
 };
+
                 
-                //$(this).typeahead('val', json.data.city + ', ' + 
-                //    json.data.state + ' ' + json.data.zip );
+// $(this).typeahead('val', json.data.city + ', ' + 
+//                        json.data.state + ' ' + json.data.zip );
+//
+//                    updateFormLocationInputs(location);
 
-                //updateFormLocationInputs(location);
 
-// http://stackoverflow.com/questions/6344683/
-//    jquery-set-ajax-result-to-an-outside-variable-callback
-// http://stackoverflow.com/questions/9644044/
-//    javascript-this-pointer-within-nested-function
+FindADoForm.prototype.init = function() {
+    this.locationSearch.init();
+};
+
 FindADoForm.prototype.loadLocation = function() {
     var self = this;
     this.getRandomLocation(function(data) {
         self.setLocation(data);
         self.updateLocationField(data);
-        self.updateHiddenLocationFields(data);
+        self.updateHidden(data);
+        self.locationSearch.update(data);
     });
+};
+
+
+FindADoForm.prototype.hiya = function() {
+    console.log('hiya');
+}
+
+FindADoForm.prototype.getLocTypeahead = function() {
+
+    return;
+
+}
+
+FindADoForm.prototype.updateLocAutocomplete = function(data) {
+
 
 };
 
@@ -52,10 +81,15 @@ FindADoForm.prototype.setLocation = function(loc) {
 };
 
 FindADoForm.prototype.updateLocationField = function(loc) {
-    this.$locInput = loc;
+    console.info('inside updateLocationField');
+    this.locationSearch.hiya();
 };
 
-FindADoForm.prototype.updateHiddenLocationFields = function(loc) {
+/**
+ * Update hidden input fields in form.
+ *
+ */
+FindADoForm.prototype.updateHidden = function(loc) {
     this.$hiddenCity.val(loc.city);
     this.$hiddenState.val(loc.state);
     this.$hiddenZip.val(loc.zip);
@@ -63,4 +97,5 @@ FindADoForm.prototype.updateHiddenLocationFields = function(loc) {
     this.$hiddenLon.val(loc.lon);
 };
 
+FindADoForm.proto
 module.exports = FindADoForm;
