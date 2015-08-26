@@ -262,3 +262,7 @@ locations table
     setsebool:  SELinux is disabled.
     ```
     * Laracasts forum: [Connect Laravel to Microsoft SQL](https://laracasts.com/discuss/channels/general-discussion/connect-laravel-to-microsoft-sql)
+
+Tue Aug 25 12:53:25 2015 CDT
+* Sort of a recipe for browerserify + gulp:
+    * Github: [Browserify + Uglify2 with sourcemaps](https://github.com/gulpjs/gulp/blob/master/docs/recipes/browserify-uglify-sourcemap.md)

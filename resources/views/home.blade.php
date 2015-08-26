@@ -11,12 +11,12 @@
     <div class="row">
         <div class="col-xs-12">
         {!! Form::open(['url' => '/physicians/search', 'method' => 'GET', 'id' => 'findADo', 'name' => 'findADo', 'class' => 'form-inline findADo']) !!}
-            {!! Form::hidden('city', null, ['class' => 'city']) !!}
-            {!! Form::hidden('state', null, ['class' => 'state']) !!}
-            {!! Form::hidden('zip', null, ['class' => 'zip']) !!}
-            {!! Form::hidden('lat', null, ['class' => 'lat']) !!}
-            {!! Form::hidden('lon', null, ['class' => 'lon']) !!}
-            {!! Form::hidden('s_code', null, ['class' => 's_code']) !!}
+            {!! Form::hidden('city', null,   ['id' => 'city']) !!}
+            {!! Form::hidden('state', null,  ['id' => 'state']) !!}
+            {!! Form::hidden('zip', null,    ['id' => 'zip']) !!}
+            {!! Form::hidden('lat', null,    ['id' => 'lat']) !!}
+            {!! Form::hidden('lon', null,    ['id' => 'lon']) !!}
+            {!! Form::hidden('s_code', null, ['id' => 'sCode']) !!}
             <div class="form-group">
                 {{-- Form::label('location') --}}
                 {!! Form::text('specialty', null, ['class' => 'form-control input-lg', 'id' => 'specialty', 'placeholder' => 'Search by name or specialty']) !!}

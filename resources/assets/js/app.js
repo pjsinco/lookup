@@ -1,4 +1,14 @@
-var FindADo = (function() {
+var Location = require('./location'),
+    FindADoForm = require('./find-a-do-form');
+
+var form = new FindADoForm('#findADo', '#specialty', '#location');
+
+//var loc = new Location('Lisle', 'IL', '60563', 32, -132);
+//form.setLocation(loc);
+form.loadLocation();
+
+
+var FindADoX = (function() {
 
     function init() {
 

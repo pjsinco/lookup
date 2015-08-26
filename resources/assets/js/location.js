@@ -1,21 +1,13 @@
-var FindADoLocation = (function() {
+var madison = require('madison');
 
-    function init() {
+var Location = function(loc) {
+    
+    this.city  = loc.city;
+    this.state = loc.state;
+    this.zip   = loc.zip;
+    this.lat   = loc.lat;
+    this.lon   = loc.lon;
+    
+};
 
-//        var loc = {
-//            city: '',
-//            state: '',
-//            zip: '',
-//            lat: '',
-//            lon: ''
-//        };
-    }
-
-
-
-    return {
-        init: init
-    };
-
-}());
-
+module.exports = Location;
