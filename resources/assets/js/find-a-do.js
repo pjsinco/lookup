@@ -3,8 +3,7 @@ var FindADoForm = require('./find-a-do-form.js'),
 
 var FindADo = function(opts) {
     this.form = new FindADoForm(opts);
-    this.location = new Location({});
-    this.form.init();
+    this.location = undefined;
 };
 
 FindADo.prototype.setLocation = function(loc) {
@@ -21,6 +20,7 @@ FindADo.prototype.loadLocation = function() {
 
 FindADo.prototype.init = function init() {
     this.loadLocation();
+    this.form.init();
 };
 
 module.exports = FindADo;

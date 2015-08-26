@@ -271,6 +271,7 @@ locations table
 * StackOverflow: [jquery set ajax result to an outside variable callback](http://stackoverflow.com/questions/6344683/jquery-set-ajax-result-to-an-outside-variable-callback)
 * StackOverflow: [Javascript “this” pointer within nested function](http://stackoverflow.com/questions/9644044/javascript-this-pointer-within-nested-function)
 
-* multiple values with _.uniq:
+* multiple values with Underscore's uniq():
     * StackOverflow: [underscore/lodash unique by multiple properties](http://stackoverflow.com/questions/26306415/underscore-lodash-unique-by-multiple-properties)
 
+* CSS-Tricks: [How Do You Structure JavaScript? The Module Pattern Edition](https://css-tricks.com/how-do-you-structure-javascript-the-module-pattern-edition/)
