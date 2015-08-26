@@ -11373,10 +11373,8 @@ finda.init();
 },{"./find-a-do.js":7}],6:[function(require,module,exports){
 var $ = require('jquery'),
     _ = require('underscore')
-    Location = require('./location.js'),
+    //Location = require('./location.js'),
     locSearch = require('./location-typeahead.js');
-
-
 
 var FindADoForm = function(opts) {
 
@@ -11402,60 +11400,14 @@ var FindADoForm = function(opts) {
     this.locationSearch = new locSearch({ input: this.$locInput });
 };
 
-                
-// $(this).typeahead('val', json.data.city + ', ' + 
-//                        json.data.state + ' ' + json.data.zip );
-//
-//                    updateFormLocationInputs(location);
-
-
 FindADoForm.prototype.init = function() {
     this.locationSearch.init();
 };
 
-FindADoForm.prototype.loadLocation = function() {
-    var self = this;
-    this.getRandomLocation(function(data) {
-        self.setLocation(data);
-        self.updateLocationField(data);
-        self.updateHidden(data);
-        self.locationSearch.update(data);
-    });
-};
+FindADoForm.prototype.update = function(loc) {
 
-
-FindADoForm.prototype.hiya = function() {
-    console.log('hiya');
-}
-
-FindADoForm.prototype.getLocTypeahead = function() {
-
-    return;
-
-}
-
-FindADoForm.prototype.updateLocAutocomplete = function(data) {
-
-
-};
-
-FindADoForm.prototype.getRandomLocation = function(callback) {
-    $.get(
-        '/api/v1/locations/random', 
-        function(responseText) {
-            callback(responseText.data);
-        }
-    );
-};
-
-FindADoForm.prototype.setLocation = function(loc) {
-    console.info('inside setLocation');
-    this.location = new Location(loc);
-};
-
-FindADoForm.prototype.updateLocationField = function(loc) {
-    console.info('inside updateLocationField');
-    this.locationSearch.hiya();
+    this.updateHidden(loc);
+    this.locationSearch.update(loc);
 };
 
 /**
@@ -11470,25 +11422,32 @@ FindADoForm.prototype.updateHidden = function(loc) {
     this.$hiddenLon.val(loc.lon);
 };
 
-FindADoForm.proto
 module.exports = FindADoForm;
 
-},{"./location-typeahead.js":8,"./location.js":9,"jquery":1,"underscore":4}],7:[function(require,module,exports){
+},{"./location-typeahead.js":8,"jquery":1,"underscore":4}],7:[function(require,module,exports){
 var FindADoForm = require('./find-a-do-form.js'),
     Location = require('./location.js');
 
 var FindADo = function(opts) {
     this.form = new FindADoForm(opts);
+    this.location = new Location({});
     this.form.init();
-    this.location = {};
 };
 
 FindADo.prototype.setLocation = function(loc) {
-    this.location = loc;
+    this.location = new Location(loc);
+    this.form.update(loc);
+};
+
+FindADo.prototype.loadLocation = function() {
+    var self = this;
+    this.location.getRandom(function(location) {
+        self.setLocation(location);
+    });
 };
 
 FindADo.prototype.init = function init() {
-    this.location = this.form.loadLocation();
+    this.loadLocation();
 };
 
 module.exports = FindADo;
@@ -11595,7 +11554,9 @@ module.exports = function(opts) {
 }
 
 },{"./typeahead.0.10.5":10,"jquery":1}],9:[function(require,module,exports){
-var madison = require('madison');
+var $ = require('jquery'),
+    madison = require('madison');
+
 
 var Location = function(loc) {
     
@@ -11607,9 +11568,25 @@ var Location = function(loc) {
     
 };
 
+
+Location.prototype.setLocation = function() {
+
+    
+
+};
+
+Location.prototype.getRandom = function(callback) {
+    $.get(
+        '/api/v1/locations/random', 
+        function(responseText) {
+            callback(responseText.data);
+        }
+    );
+};
+
 module.exports = Location;
 
-},{"madison":2}],10:[function(require,module,exports){
+},{"jquery":1,"madison":2}],10:[function(require,module,exports){
 var $ = require('jquery');
 
 //https://github.com/twitter/typeahead.js/issues/872

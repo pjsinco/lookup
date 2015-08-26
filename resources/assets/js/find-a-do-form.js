@@ -1,6 +1,6 @@
 var $ = require('jquery'),
     _ = require('underscore')
-    Location = require('./location.js'),
+    //Location = require('./location.js'),
     locSearch = require('./location-typeahead.js');
 
 var FindADoForm = function(opts) {
@@ -31,33 +31,10 @@ FindADoForm.prototype.init = function() {
     this.locationSearch.init();
 };
 
-FindADoForm.prototype.loadLocation = function() {
-    var self = this;
-    this.getRandomLocation(function(data) {
-        self.setLocation(data);
-        self.updateLocationField(data);
-        self.updateHidden(data);
-        self.locationSearch.update(data);
-    });
-};
+FindADoForm.prototype.update = function(loc) {
 
-FindADoForm.prototype.getRandomLocation = function(callback) {
-    $.get(
-        '/api/v1/locations/random', 
-        function(responseText) {
-            callback(responseText.data);
-        }
-    );
-};
-
-FindADoForm.prototype.setLocation = function(loc) {
-    console.info('inside setLocation');
-    this.location = new Location(loc);
-};
-
-FindADoForm.prototype.updateLocationField = function(loc) {
-    console.info('inside updateLocationField');
-    this.locationSearch.hiya();
+    this.updateHidden(loc);
+    this.locationSearch.update(loc);
 };
 
 /**
