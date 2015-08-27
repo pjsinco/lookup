@@ -15,7 +15,6 @@ function LocationSearch(opts) {
 }
 
 LocationSearch.prototype.initBloodhound = function() {
-
     var locationInput = this.input;
     this.engine = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
@@ -63,19 +62,22 @@ LocationSearch.prototype.initBloodhound = function() {
             }
         }
     }); 
-
-};
-
-LocationSearch.prototype.hiya = function() {
-    console.log('hiya');
 };
 
 LocationSearch.prototype.updateLocation = function(loc) {
     this.location = loc;
 };
 
-LocationSearch.prototype.update = function(loc) {
+LocationSearch.prototype.bindOpenEvent = function(callback) {
+    this.input.on('typeahead:opened', callback);
+};
 
+LocationSearch.prototype.getLocation = function() {
+    return this.location;
+
+};
+
+LocationSearch.prototype.update = function(loc) {
     this.updateLocation(loc);
 
     this.input.typeahead('val', this.location.city + ', ' +
@@ -83,7 +85,6 @@ LocationSearch.prototype.update = function(loc) {
 };
 
 LocationSearch.prototype.initTypeahead = function() {
-
     var locationInput = this.input;
 
     this.input.typeahead({
@@ -107,15 +108,13 @@ LocationSearch.prototype.initTypeahead = function() {
             engine: Hogan
         }
     });
-
 };
 
 LocationSearch.prototype.init = function() {
-
     this.initBloodhound();
     this.engine.initialize();
     this.initTypeahead();
-
+    
 };
 
 module.exports = function(opts) {
