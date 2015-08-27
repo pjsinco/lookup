@@ -1,16 +1,21 @@
 var $ = require('jquery'),
+    Location = require('./location.js'),
     typeahead = require('./typeahead.0.10.5');
 
 /**
- * @param opts.input is a jQ object.
+ * Provide autocomplete results for searching a location.
+ *
+ * @param opts.input is a JQuery object.
  *
  */
 function LocationSearch(opts) {
     this.input = opts.input;
     this.engine = {};
+    this.location = new Location({});
 }
 
 LocationSearch.prototype.initBloodhound = function() {
+
     var locationInput = this.input;
     this.engine = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
@@ -18,8 +23,8 @@ LocationSearch.prototype.initBloodhound = function() {
         limit: 10,
         remote: {
             url: 'api/v1/locations/search',
-            replace: function(url, query) {
-                return url + '?q=' + query;
+            replace: function(url, urlEncodedQuery) {
+                return url + '?q=' + urlEncodedQuery;
             },
             filter: function(locations) {
                 var userTyped = locationInput.typeahead('val');
@@ -58,20 +63,27 @@ LocationSearch.prototype.initBloodhound = function() {
             }
         }
     }); 
+
 };
 
 LocationSearch.prototype.hiya = function() {
     console.log('hiya');
 };
 
-LocationSearch.prototype.update = function(loc) {
-    this.input.typeahead('val', loc.city + ', ' +
-        loc.state + ' ' + loc.zip);
+LocationSearch.prototype.updateLocation = function(loc) {
+    this.location = loc;
 };
 
-LocationSearch.prototype.init = function() {
-    this.initBloodhound();
-    this.engine.initialize();
+LocationSearch.prototype.update = function(loc) {
+
+    this.updateLocation(loc);
+
+    this.input.typeahead('val', this.location.city + ', ' +
+        this.location.state + ' ' + this.location.zip);
+};
+
+LocationSearch.prototype.initTypeahead = function() {
+
     var locationInput = this.input;
 
     this.input.typeahead({
@@ -95,6 +107,15 @@ LocationSearch.prototype.init = function() {
             engine: Hogan
         }
     });
+
+};
+
+LocationSearch.prototype.init = function() {
+
+    this.initBloodhound();
+    this.engine.initialize();
+    this.initTypeahead();
+
 };
 
 module.exports = function(opts) {

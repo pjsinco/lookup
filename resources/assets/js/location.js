@@ -9,6 +9,14 @@ var Location = function(loc) {
     this.zip   = loc.zip   || '';
     this.lat   = loc.lat   || '';
     this.lon   = loc.lon   || '';
+
+    this.loc = {
+        city: this.city,
+        state: this.state,
+        zip: this.zip,
+        lat: this.lat,
+        lon: this.lon,
+    };
     
 };
 

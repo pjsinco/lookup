@@ -19,8 +19,8 @@ FindADo.prototype.loadLocation = function() {
 };
 
 FindADo.prototype.init = function init() {
-    this.loadLocation();
     this.form.init();
+    this.loadLocation();
 };
 
 module.exports = FindADo;

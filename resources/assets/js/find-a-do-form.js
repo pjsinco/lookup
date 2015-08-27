@@ -1,7 +1,8 @@
 var $ = require('jquery'),
-    _ = require('underscore')
-    //Location = require('./location.js'),
-    LocationSearch = require('./location-typeahead.js');
+    _ = require('underscore'),
+    Location = require('./location.js'),
+    LocationSearch = require('./location-search.js'),
+    PhysSpecialtySearch = require('./phys-specialty-search.js');
 
 var FindADoForm = function(opts) {
 
@@ -25,14 +26,17 @@ var FindADoForm = function(opts) {
     this.$hiddenLon = this.$formId.find('#lon');
 
     this.locationSearch = new LocationSearch({ input: this.$locInput });
+    this.physSpecialtySearch = 
+        new PhysSpecialtySearch({ input: this.$specialtyInput });
+
 };
 
 FindADoForm.prototype.init = function() {
     this.locationSearch.init();
+    this.physSpecialtySearch.init();
 };
 
 FindADoForm.prototype.update = function(loc) {
-
     this.updateHidden(loc);
     this.locationSearch.update(loc);
 };

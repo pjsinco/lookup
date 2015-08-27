@@ -11372,9 +11372,10 @@ finda.init();
 
 },{"./find-a-do.js":7}],6:[function(require,module,exports){
 var $ = require('jquery'),
-    _ = require('underscore')
-    //Location = require('./location.js'),
-    LocationSearch = require('./location-typeahead.js');
+    _ = require('underscore'),
+    Location = require('./location.js'),
+    LocationSearch = require('./location-search.js'),
+    PhysSpecialtySearch = require('./phys-specialty-search.js');
 
 var FindADoForm = function(opts) {
 
@@ -11398,14 +11399,17 @@ var FindADoForm = function(opts) {
     this.$hiddenLon = this.$formId.find('#lon');
 
     this.locationSearch = new LocationSearch({ input: this.$locInput });
+    this.physSpecialtySearch = 
+        new PhysSpecialtySearch({ input: this.$specialtyInput });
+
 };
 
 FindADoForm.prototype.init = function() {
     this.locationSearch.init();
+    this.physSpecialtySearch.init();
 };
 
 FindADoForm.prototype.update = function(loc) {
-
     this.updateHidden(loc);
     this.locationSearch.update(loc);
 };
@@ -11424,7 +11428,7 @@ FindADoForm.prototype.updateHidden = function(loc) {
 
 module.exports = FindADoForm;
 
-},{"./location-typeahead.js":8,"jquery":1,"underscore":4}],7:[function(require,module,exports){
+},{"./location-search.js":8,"./location.js":9,"./phys-specialty-search.js":10,"jquery":1,"underscore":4}],7:[function(require,module,exports){
 var FindADoForm = require('./find-a-do-form.js'),
     Location = require('./location.js');
 
@@ -11446,26 +11450,31 @@ FindADo.prototype.loadLocation = function() {
 };
 
 FindADo.prototype.init = function init() {
-    this.loadLocation();
     this.form.init();
+    this.loadLocation();
 };
 
 module.exports = FindADo;
 
 },{"./find-a-do-form.js":6,"./location.js":9}],8:[function(require,module,exports){
 var $ = require('jquery'),
+    Location = require('./location.js'),
     typeahead = require('./typeahead.0.10.5');
 
 /**
- * @param opts.input is a jQ object.
+ * Provide autocomplete results for searching a location.
+ *
+ * @param opts.input is a JQuery object.
  *
  */
 function LocationSearch(opts) {
     this.input = opts.input;
     this.engine = {};
+    this.location = new Location({});
 }
 
 LocationSearch.prototype.initBloodhound = function() {
+
     var locationInput = this.input;
     this.engine = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
@@ -11473,8 +11482,8 @@ LocationSearch.prototype.initBloodhound = function() {
         limit: 10,
         remote: {
             url: 'api/v1/locations/search',
-            replace: function(url, query) {
-                return url + '?q=' + query;
+            replace: function(url, urlEncodedQuery) {
+                return url + '?q=' + urlEncodedQuery;
             },
             filter: function(locations) {
                 var userTyped = locationInput.typeahead('val');
@@ -11513,20 +11522,27 @@ LocationSearch.prototype.initBloodhound = function() {
             }
         }
     }); 
+
 };
 
 LocationSearch.prototype.hiya = function() {
     console.log('hiya');
 };
 
-LocationSearch.prototype.update = function(loc) {
-    this.input.typeahead('val', loc.city + ', ' +
-        loc.state + ' ' + loc.zip);
+LocationSearch.prototype.updateLocation = function(loc) {
+    this.location = loc;
 };
 
-LocationSearch.prototype.init = function() {
-    this.initBloodhound();
-    this.engine.initialize();
+LocationSearch.prototype.update = function(loc) {
+
+    this.updateLocation(loc);
+
+    this.input.typeahead('val', this.location.city + ', ' +
+        this.location.state + ' ' + this.location.zip);
+};
+
+LocationSearch.prototype.initTypeahead = function() {
+
     var locationInput = this.input;
 
     this.input.typeahead({
@@ -11550,13 +11566,22 @@ LocationSearch.prototype.init = function() {
             engine: Hogan
         }
     });
+
+};
+
+LocationSearch.prototype.init = function() {
+
+    this.initBloodhound();
+    this.engine.initialize();
+    this.initTypeahead();
+
 };
 
 module.exports = function(opts) {
     return new LocationSearch(opts);
 }
 
-},{"./typeahead.0.10.5":10,"jquery":1}],9:[function(require,module,exports){
+},{"./location.js":9,"./typeahead.0.10.5":11,"jquery":1}],9:[function(require,module,exports){
 var $ = require('jquery'),
     madison = require('madison');
 
@@ -11568,6 +11593,14 @@ var Location = function(loc) {
     this.zip   = loc.zip   || '';
     this.lat   = loc.lat   || '';
     this.lon   = loc.lon   || '';
+
+    this.loc = {
+        city: this.city,
+        state: this.state,
+        zip: this.zip,
+        lat: this.lat,
+        lon: this.lon,
+    };
     
 };
 
@@ -11590,6 +11623,143 @@ Location.prototype.getRandom = function(callback) {
 module.exports = Location;
 
 },{"jquery":1,"madison":2}],10:[function(require,module,exports){
+var $ = require('jquery'),
+    typeahead = require('./typeahead.0.10.5');
+
+/**
+ * Provide autocomplete results for searching on physician/specialty.
+ *
+ * @param opts.input is a JQuery object.
+ */
+
+function PhysSpecialtySearch(opts) {
+    this.input = opts.input;
+    this.physEngine = {};
+    this.specEngine = {};
+}
+
+PhysSpecialtySearch.prototype.initBloodhound = function() {
+
+
+    this.physEngine = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        //limit: 7,
+        remote: {
+            url: 'api/v1/physicians/search',
+            replace: function(url, uriEncodedQuery) {
+                // Grab the location from the hidden form fields
+                var loc = {
+                    city: $('#city').val(),
+                    state: $('#state').val(),
+                    zip: $('#zip').val(),
+                    lat: $('#lat').val(),
+                    lon: $('#lon').val()
+                };
+                var params = $.param(loc);
+                return url + '?name=' + uriEncodedQuery + '&' + params;
+            },
+            filter: function(physicians) {
+                return $.map(physicians, function(d) {
+                    return $.map(d, function(e) {
+                        return {
+                            first_name: e.first_name,
+                            last_name: e.last_name,
+                            designation: e.designation,
+                            city: e.city,
+                            state: e.state,
+                            id: e.id,
+                            value: e.full_name
+                        };
+                    });
+                });
+            }
+        }
+    });
+    
+    this.specEngine = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        limit: 7,
+        prefetch: {
+            url: 'http://lookup.dev/data/specialties.json',
+            filter: function(specialties) {
+                console.log(specialties);
+                return $.map(specialties, function(d) {
+                    return $.map(d, function(e) {
+                        return {
+                            code: e.code,
+                            value: e.name
+                        };
+                    });
+                });
+            }
+        }
+    });
+
+};
+
+PhysSpecialtySearch.prototype.init = function() {
+
+    this.initBloodhound();
+    this.physEngine.initialize();
+    this.specEngine.initialize();
+    this.initTypeahead();
+    
+};
+
+PhysSpecialtySearch.prototype.update = function(loc) {
+
+    this.location = loc;
+    this.physEngine.initialize(true);
+    this.specEngine.initialize(true);
+    
+};
+
+PhysSpecialtySearch.prototype.initTypeahead = function() {
+
+    this.input.typeahead({
+        hint: false,
+        highlight: true,
+        minLength: 2,
+        limit: 7,
+    }, {
+        name: 'specEngine',
+        source: this.specEngine.ttAdapter(),
+        display: 'value',
+        templates: {
+            header: '<h5 class="typeahead-subhead">Specialties</h5>',
+            suggestion: function(data) {
+                // TODO
+                // remove hard-coded url
+                return '<div><a href="#">' + data.value + "</a></div>";
+            }
+        }
+    }, {
+        name: 'physEngine',
+        //limit: 7,
+        display: 'value',
+        source: this.physEngine.ttAdapter(),
+        templates: {
+            header: '<h5 class="typeahead-subhead">Physicians near [city, state]</h5>',
+            suggestion: function(data) {
+                // TODO
+                // remove hard-coded url
+                return '<div><a href="http://lookup.dev/physicians/' + 
+                    data.id + '">' + data.first_name + ' ' + data.last_name + ', ' +
+                    data.designation + '; ' + data.city + ', ' + data.state +
+                    '</a></div>';
+            }
+        }
+    });
+
+};
+
+module.exports = function(opts) {
+    return new PhysSpecialtySearch(opts);
+}
+
+},{"./typeahead.0.10.5":11,"jquery":1}],11:[function(require,module,exports){
 var $ = require('jquery');
 
 //https://github.com/twitter/typeahead.js/issues/872
