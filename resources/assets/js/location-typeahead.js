@@ -1,7 +1,10 @@
 var $ = require('jquery'),
     typeahead = require('./typeahead.0.10.5');
 
-//module.exports = function(opts) {
+/**
+ * @param opts.input is a jQ object.
+ *
+ */
 function LocationSearch(opts) {
     this.input = opts.input;
     this.engine = {};

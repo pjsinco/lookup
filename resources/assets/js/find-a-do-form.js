@@ -1,7 +1,7 @@
 var $ = require('jquery'),
     _ = require('underscore')
     //Location = require('./location.js'),
-    locSearch = require('./location-typeahead.js');
+    LocationSearch = require('./location-typeahead.js');
 
 var FindADoForm = function(opts) {
 
@@ -24,7 +24,7 @@ var FindADoForm = function(opts) {
     this.$hiddenLat = this.$formId.find('#lat');
     this.$hiddenLon = this.$formId.find('#lon');
 
-    this.locationSearch = new locSearch({ input: this.$locInput });
+    this.locationSearch = new LocationSearch({ input: this.$locInput });
 };
 
 FindADoForm.prototype.init = function() {

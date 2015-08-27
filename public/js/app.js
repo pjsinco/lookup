@@ -11374,7 +11374,7 @@ finda.init();
 var $ = require('jquery'),
     _ = require('underscore')
     //Location = require('./location.js'),
-    locSearch = require('./location-typeahead.js');
+    LocationSearch = require('./location-typeahead.js');
 
 var FindADoForm = function(opts) {
 
@@ -11397,7 +11397,7 @@ var FindADoForm = function(opts) {
     this.$hiddenLat = this.$formId.find('#lat');
     this.$hiddenLon = this.$formId.find('#lon');
 
-    this.locationSearch = new locSearch({ input: this.$locInput });
+    this.locationSearch = new LocationSearch({ input: this.$locInput });
 };
 
 FindADoForm.prototype.init = function() {
@@ -11430,7 +11430,7 @@ var FindADoForm = require('./find-a-do-form.js'),
 
 var FindADo = function(opts) {
     this.form = new FindADoForm(opts);
-    this.location = undefined;
+    this.location = new Location({});
 };
 
 FindADo.prototype.setLocation = function(loc) {
@@ -11456,7 +11456,10 @@ module.exports = FindADo;
 var $ = require('jquery'),
     typeahead = require('./typeahead.0.10.5');
 
-//module.exports = function(opts) {
+/**
+ * @param opts.input is a jQ object.
+ *
+ */
 function LocationSearch(opts) {
     this.input = opts.input;
     this.engine = {};
@@ -11560,11 +11563,11 @@ var $ = require('jquery'),
 
 var Location = function(loc) {
     
-    this.city  = loc.city;
-    this.state = loc.state;
-    this.zip   = loc.zip;
-    this.lat   = loc.lat;
-    this.lon   = loc.lon;
+    this.city  = loc.city  || '';
+    this.state = loc.state || '';
+    this.zip   = loc.zip   || '';
+    this.lat   = loc.lat   || '';
+    this.lon   = loc.lon   || '';
     
 };
 
