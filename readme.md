@@ -275,3 +275,6 @@ locations table
     * StackOverflow: [underscore/lodash unique by multiple properties](http://stackoverflow.com/questions/26306415/underscore-lodash-unique-by-multiple-properties)
 
 * CSS-Tricks: [How Do You Structure JavaScript? The Module Pattern Edition](https://css-tricks.com/how-do-you-structure-javascript-the-module-pattern-edition/)
+
+#####Thu Aug 27 04:55:24 2015 CDT
+* Blog: [Setting Up A JS App With Gulp and Browserify](https://quickleft.com/blog/setting-up-a-clientside-javascript-project-with-gulp-and-browserify/)
