@@ -278,3 +278,24 @@ locations table
 
 #####Thu Aug 27 04:55:24 2015 CDT
 * Blog: [Setting Up A JS App With Gulp and Browserify](https://quickleft.com/blog/setting-up-a-clientside-javascript-project-with-gulp-and-browserify/)
+* Blog: [Writing Testable Frontend Javascript Part 1 - Anti-patterns and their fixes](https://shanetomlinson.com/2013/testing-javascript-frontend-part-1-anti-patterns-and-fixes/)
+* Blog: [Writing Testable Frontend Javascript Part 2 - Refactor away anti-patterns](https://shanetomlinson.com/2013/writing-testable-javascript-part-2-refactor-away-anti-patterns/)
+* AListApart: [The Design of Code: Organizing JavaScript](http://alistapart.com/article/the-design-of-code-organizing-javascript)
+* Google: [Debugging JavaScript in Chrome DevTools](https://developer.chrome.com/devtools/docs/javascript-debugging)
+
+#####Fri Aug 28 16:24:31 2015 CDT
+* Slides: [BACKBONE.JS FOR WORDPRESS DEVELOPERS](http://kadamwhite.github.io/talks/2014/backbone-wordpress-wpsessions/#/)
+* Blog: [Backbone.js Tutorial: Getting Started with Backbone](http://www.korenlc.com/backbone-js-tutorial-getting-started-with-backbone/)
+* Sitepoint: [Backbone.js Basics: Models, Views, Collections and Templates](http://www.sitepoint.com/backbone-basics-models-views-collections-templates/)
+* CodeProject: [BackBone Tutorial – Part 1: Introduction to Backbone.Js](http://www.codeproject.com/Articles/795965/BackBone-Tutorial-Part-Introduction-to-Backbone-Js)
+* Spring.io: [Consuming a RESTful Web Service with Backbone.js](https://spring.io/guides/gs/consuming-rest-backbone/)
+* Wordpress.tv [K Adam White: Evolving Your JavaScript with Backbone.js](http://wordpress.tv/2013/09/05/k-adam-white-evolving-your-javascript-with-backbone-js/)
+        * Github [backbone-wordpress-demo](https://github.com/kadamwhite/backbone-wordpress-demo)
+* TutsPlus: [Using Backbone Within the WordPress Admin: The Back End](http://code.tutsplus.com/articles/using-backbone-within-the-wordpress-admin-the-back-end--wp-30056)
+* TutsPlus: [Using Backbone Within the WordPress Admin: The Front End](http://code.tutsplus.com/tutorials/using-backbone-within-the-wordpress-admin-the-front-end--wp-30121)
+* [Backbone questions on wordpress.stackexchange.com](http://wordpress.stackexchange.com/search?q=backbone)
+* Chrome Extension: [Backbone-Debugger](https://github.com/Maluen/Backbone-Debugger)
+* Smashing: [WordPress Essentials: How To Create A WordPress Plugin (2011)](http://www.smashingmagazine.com/2011/09/how-to-create-a-wordpress-plugin/)
+
+#####Sun Aug 30 07:28:54 2015 CDT
+* Sitepoint: [Getting Started with Browserify](http://www.sitepoint.com/getting-started-browserify/)

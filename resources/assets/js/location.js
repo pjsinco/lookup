@@ -9,8 +9,12 @@ var Location = function(loc) {
     this.zip   = loc.zip   || '';
     this.lat   = loc.lat   || '';
     this.lon   = loc.lon   || '';
-
 };
+
+Location.prototype.toString = function() {
+    return this.city + ', ' + this.state + ' ' +
+        this.zip;
+}
 
 Location.prototype.update = function(loc) {
     //this.setLocation(loc);
@@ -42,6 +46,7 @@ Location.prototype.resolve = function(query) {
 };
 
 Location.prototype.setLocation = function(loc) {
+    console.info('setting Location!');
 
     this.city = loc.city;
     this.state = loc.state;
@@ -49,6 +54,7 @@ Location.prototype.setLocation = function(loc) {
     this.lat = loc.lat;
     this.lon = loc.lon;
 
+    $.event.trigger('elit:LocationResolved', loc);
 };
 
 Location.prototype.getRandom = function(callback) {
@@ -58,6 +64,7 @@ Location.prototype.getRandom = function(callback) {
             callback(responseText.data);
         }
     );
+
 };
 
 module.exports = Location;

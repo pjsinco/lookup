@@ -12452,6 +12452,7 @@ var $ = require('jquery'),
     assert = require('assert'),
     Location = require('./location.js'),
     LocationSearch = require('./location-search.js'),
+    validator = require('./validator.js'),
     PhysSpecialtySearch = require('./phys-specialty-search.js');
 
 var FindADoForm = function(opts) {
@@ -12477,6 +12478,7 @@ var FindADoForm = function(opts) {
 
     this.location = new Location({});
     this.locationResolved = false;
+    this.locationOpenValue = '';
 
     this.locationSearch = new LocationSearch({ input: this.$locInput });
     this.physSpecialtySearch = 
@@ -12484,23 +12486,47 @@ var FindADoForm = function(opts) {
 
 };
 
+FindADoForm.prototype.goingIn = function(inVal) {
+
+    self.goingIn($(this).val());
+
+};
+
+FindADoForm.prototype.comingOut = function(outVal) {
+
+    if (this.locationOpenValue != outVal) {
+        this.validate();
+    }
+
+};
+
+FindADoForm.prototype.validate = function(evt) {
+    console.log('validate');
+    //console.log('locationResolved: ' + (this.locationResolved ? 'Yes' : 'No'));
+};
 
 FindADoForm.prototype.bindEvents = function() {
+
     var self = this;
 
+    $(document).on('elit:LocationResolved', function(evt, loc) {
+        console.log('Handled elit:LocationResolved');
+        self.update(loc);
+    });
+
     this.$locInput.on('typeahead:opened', function(evt) {
-        console.log('opened');
-        this.locationResolved = false;
+        self.goingIn($(this).val());
     });
 
     this.$locInput.on('typeahead:closed', function(evt) {
-        console.log('closed');
+        self.comingOut($(this).val());
+    //    if ($(this).val() != self.locationOpenValue) {
+    //        self.validate(evt);
+    //    }
 
-        if (! this.locationResolved) {
-            console.info('calling validate');
-            self.locationResolved = self.location.validate($(this).val());
-        }
-
+    //    if (!locationResolved) {
+    //        self.resolveLocation($(this).val())
+    //    }
     });
 
     this.$locInput.on('typeahead:cursorchanged', function(evt, suggestion) {
@@ -12511,7 +12537,7 @@ FindADoForm.prototype.bindEvents = function() {
 
     this.$locInput.on('typeahead:selected', function(evt, suggestion) {
         console.log('selected');
-        this.locationResolved = this.location.validate(suggestion)
+        //this.locationResolved = self.validate(suggestion)
     });
 
     this.$locInput.on('typeahead:autocompleted', function(evt, suggestion) {
@@ -12533,23 +12559,24 @@ FindADoForm.prototype.validateSpecialtyInput = function() {
 
 };
 
-FindADoForm.prototype.validate = function() {
-
-
-
-};
-
 FindADoForm.prototype.init = function() {
     this.locationSearch.init();
     this.physSpecialtySearch.init();
     this.bindEvents();
 };
 
+/**
+ * Update form elements with a location.
+ *
+ */
 FindADoForm.prototype.update = function(loc) {
     assert.ok(loc, "Assert OK");
+    //this.locationResolved = true;
     this.location = new Location(loc);
+    this.locationString = loc;
     this.updateHidden(this.location);
     this.locationSearch.update(this.location);
+    this.locationOpenValue = this.$locInput.val();
 };
 
 /**
@@ -12557,7 +12584,7 @@ FindADoForm.prototype.update = function(loc) {
  *
  */
 FindADoForm.prototype.updateHidden = function(loc) {
-
+    assert.ok(loc, "Assert OK");
     this.$hiddenCity.val(loc.city);
     this.$hiddenState.val(loc.state);
     this.$hiddenZip.val(loc.zip);
@@ -12567,7 +12594,7 @@ FindADoForm.prototype.updateHidden = function(loc) {
 
 module.exports = FindADoForm;
 
-},{"./location-search.js":13,"./location.js":14,"./phys-specialty-search.js":15,"assert":1,"jquery":6,"underscore":9}],12:[function(require,module,exports){
+},{"./location-search.js":13,"./location.js":14,"./phys-specialty-search.js":15,"./validator.js":17,"assert":1,"jquery":6,"underscore":9}],12:[function(require,module,exports){
 var FindADoForm = require('./find-a-do-form.js'),
     Location = require('./location.js');
 
@@ -12731,8 +12758,12 @@ var Location = function(loc) {
     this.zip   = loc.zip   || '';
     this.lat   = loc.lat   || '';
     this.lon   = loc.lon   || '';
-
 };
+
+Location.prototype.toString = function() {
+    return this.city + ', ' + this.state + ' ' +
+        this.zip;
+}
 
 Location.prototype.update = function(loc) {
     //this.setLocation(loc);
@@ -12764,6 +12795,7 @@ Location.prototype.resolve = function(query) {
 };
 
 Location.prototype.setLocation = function(loc) {
+    console.info('setting Location!');
 
     this.city = loc.city;
     this.state = loc.state;
@@ -12771,6 +12803,7 @@ Location.prototype.setLocation = function(loc) {
     this.lat = loc.lat;
     this.lon = loc.lon;
 
+    $.event.trigger('elit:LocationResolved', loc);
 };
 
 Location.prototype.getRandom = function(callback) {
@@ -12780,6 +12813,7 @@ Location.prototype.getRandom = function(callback) {
             callback(responseText.data);
         }
     );
+
 };
 
 module.exports = Location;
@@ -14710,7 +14744,22 @@ module.exports = (function($) {
     })();
 })(window.jQuery);
 
-},{"jquery":6}]},{},[10])
+},{"jquery":6}],17:[function(require,module,exports){
+var Location = require('./location.js');
+
+var validator = {
+
+    isZipCode: function(query) {
+        return new RegExp(/^\d{5}$/).test(query);
+    }
+
+    
+
+};
+
+module.exports = validator;
+
+},{"./location.js":14}]},{},[10])
 
 
 //# sourceMappingURL=../../public/js/app.js.map
