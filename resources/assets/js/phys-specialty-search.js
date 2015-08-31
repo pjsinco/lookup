@@ -57,7 +57,8 @@ PhysSpecialtySearch.prototype.initBloodhound = function() {
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         limit: 7,
         prefetch: {
-            url: 'http://lookup.dev/data/specialties.json',
+            //url: 'http://lookup.dev/data/specialties.json',
+            url: 'http://lookup.dev/api/v1/specialties',
             filter: function(specialties) {
                 console.log(specialties);
                 return $.map(specialties, function(d) {
