@@ -299,3 +299,7 @@ locations table
 
 #####Sun Aug 30 07:28:54 2015 CDT
 * Sitepoint: [Getting Started with Browserify](http://www.sitepoint.com/getting-started-browserify/)
+
+#####Mon Aug 31 18:36:18 2015 CDT
+* Github/Packagist: [CORS in Laravel 5](https://github.com/barryvdh/laravel-cors)
+
