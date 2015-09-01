@@ -130,16 +130,20 @@ class LocationsController extends ApiController
      */
     public function random(Request $request)
     {
-        if ($request->ajax()) {
+        // TODO disabling ajax detection
+        // Doesn't seem to work when making calls from another server,
+        // or at least localhost
+
+        //if ($request->ajax()) {
             $location = (array) App\Location::random();
             if ($location) {
                 return $this->respond([
                     'data' => $this->locationTransformer->transform($location),
                 ]);
             }
-        }
+        //}
 
-        App::abort(404, 'Not authorized to view this page');
+        //App::abort(404, 'Not authorized to view this page');
     }
 
     /**
