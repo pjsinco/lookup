@@ -109,7 +109,7 @@ class PhysiciansController extends ApiController
         $haversineSelect .= ") ) + sin( radians(" . $request->lat . ") ) ";
         $haversineSelect .= "* sin( radians( lat ) ) ) ) AS distance";
 
-        if ($request->ajax()) {
+        //if ($request->ajax()) {
 
             if ($request->has('lat') && $request->has('lon') && $request->has('name')) {
 
@@ -137,7 +137,7 @@ class PhysiciansController extends ApiController
                     ]
                 ], 404);
             }
-        }
+        //}
 
         /**
          * "city" => "Long Pine"
