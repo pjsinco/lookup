@@ -1,5 +1,7 @@
 #TODO    
 
+* Resolve the problem with CORS headers. Right now, we've opened up the app. See top of /public/index.php.
+
 * Make both "St. Louis" and "Saint Louis" and "St Louis" available
     * As well as other "Saint" cities
     * "Ft Worth" vs. "Fort Worth"
@@ -302,4 +304,9 @@ locations table
 
 #####Mon Aug 31 18:36:18 2015 CDT
 * Github/Packagist: [CORS in Laravel 5](https://github.com/barryvdh/laravel-cors)
+
+#####Thu Sep  3 09:35:41 2015 CDT
+* Github/Packagist: [ApiGuard](https://github.com/chrisbjr/api-guard)
+> A simple way of authenticating your APIs with API keys using Laravel. 
+
 

@@ -12763,7 +12763,7 @@ var Location = function(loc) {
 Location.prototype.toString = function() {
     return this.city + ', ' + this.state + ' ' +
         this.zip;
-}
+},
 
 Location.prototype.update = function(loc) {
     //this.setLocation(loc);
