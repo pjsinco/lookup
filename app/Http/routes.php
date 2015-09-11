@@ -32,8 +32,9 @@ Route::group(['prefix' => 'api/v1'], function() {
      * Specialties
      *
      */
-    Route::get('specialties/search', 'SpecialtiesController@search');
     Route::get('specialties', 'SpecialtiesController@index');
+    Route::get('specialties/search', 'SpecialtiesController@search');
+    Route::get('specialties/{code}', 'SpecialtiesController@show');
 
 
     /**

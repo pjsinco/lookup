@@ -18,6 +18,13 @@ class SpecialtiesController extends ApiController
         $this->specialtyTransformer = $specialtyTransformer;
     }
 
+    function show($code)
+    {
+        $specialty = \App\Specialty::findOrFail($code);
+        
+        return $this->specialtyTransformer->transform($specialty);
+    }
+
     public function index()
     {
         $specialties = \App\Specialty::all();
