@@ -29,7 +29,12 @@ class PhysiciansController extends ApiController
      */
     public function show($id)
     {
-        return \App\Physician::findOrFail($id);
+        $physician = \App\Physician::findOrFail($id);
+
+        return $this->respond([
+            'data' => $this->physicianTransformer->transform($physician)
+        ]);
+
     }
 
     /**

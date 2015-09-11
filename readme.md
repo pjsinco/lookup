@@ -43,6 +43,7 @@ locations table
         * change id to aoa_mem_id
     * include gender?
     * img src?
+    * can blanks be blank instead of "BLANK"
 
 #ZIP codes
 * Blog: [Getting All ZIP Codes In A Given Radius From A Known Point / ZIP Code Via PHP And MySQL](https://www.dougv.com/2009/03/getting-all-zip-codes-in-a-given-radius-from-a-known-point-zip-code-via-php-and-mysql/)
