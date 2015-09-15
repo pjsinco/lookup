@@ -313,3 +313,5 @@ locations table
 > A simple way of authenticating your APIs with API keys using Laravel. 
 
 
+Tue Sep 15 06:49:46 2015 CDT
+* TutsPlus: [Laravel 4: A Start at a RESTful API (Updated)](http://code.tutsplus.com/tutorials/laravel-4-a-start-at-a-restful-api-updated--net-29785)

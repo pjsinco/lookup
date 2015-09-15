@@ -42,8 +42,8 @@ Route::group(['prefix' => 'api/v1'], function() {
      *
      */
     Route::get('test/locations', 'LocationsController@testSearch');
-
-    Route::get('text/locations', 'LocationsController@withinDistance');
+    Route::get('test/locations', 'LocationsController@withinDistance');
+    Route::get('distances', 'PhysiciansController@withinDistance');
 
 });
 
