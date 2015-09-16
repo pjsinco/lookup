@@ -92,12 +92,20 @@ class PhysiciansController extends ApiController
                 ]);
             }
 
-            return Response::json([
+            $this->setStatusCode(404);
+            return $this->respond([
+                'meta' => [
+                    'city' => $request->city,
+                    'state' => $request->state,
+                    'zip' => $request->zip,
+                    'specialty' => $request->specialty,
+                    'count' => count($physicians)
+                ],
                 'error' => [
                     'message' => 'No physicians found',
                     'status_code' => 404,
                 ]
-            ], 404);
+            ]);
         //}
     }
 
