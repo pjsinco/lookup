@@ -51,7 +51,6 @@ class PhysiciansController extends ApiController
     public function search(Request $request)
     {
         \Debugbar::disable();
-
         $distance = 25;
 
         $haversineSelectStmt = $this->haversineSelect($request->lat, $request->lon);
@@ -71,7 +70,7 @@ class PhysiciansController extends ApiController
             } else  {
                 DB::setFetchMode(\PDO::FETCH_ASSOC);
                 $physicians = DB::table('physicians')
-                    ->select(DB::raw($haversineSelect))
+                    ->select(DB::raw($haversineSelectStmt))
                     ->where('PrimaryPracticeFocusCode', '=', $request->s_code )
                     ->having('distance', '<', $distance)
                     ->orderBy('distance', 'asc')
@@ -81,6 +80,12 @@ class PhysiciansController extends ApiController
             } 
             if (! empty($physicians)) {
                 return $this->respond([
+                    'meta' => [
+                        'city' => $request->city,
+                        'state' => $request->state,
+                        'zip' => $request->zip,
+                        'specialty' => $request->specialty
+                    ],
                     'data' => $this->physicianTransformer
                                    ->transformCollection($physicians)
                 ]);
