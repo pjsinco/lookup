@@ -84,7 +84,8 @@ class PhysiciansController extends ApiController
                         'city' => $request->city,
                         'state' => $request->state,
                         'zip' => $request->zip,
-                        'specialty' => $request->specialty
+                        'specialty' => $request->specialty,
+                        'count' => count($physicians)
                     ],
                     'data' => $this->physicianTransformer
                                    ->transformCollection($physicians)
