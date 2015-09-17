@@ -8,6 +8,8 @@ Route::get('findado', 'FindADOController@index');
 
 Route::get('results', 'ResultsController@index');
 
+Route::get('try-this-one', 'LocationsController@tryThisOne');
+
 Route::group(['prefix' => 'api/v1'], function() {
 
     /**

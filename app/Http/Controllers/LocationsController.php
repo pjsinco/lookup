@@ -200,4 +200,13 @@ class LocationsController extends ApiController
         $locations = DB::select($q);
     }
 
+
+    public function tryThisOne()
+    {
+        \Debugbar::disable();
+        
+        $location = (array) App\Location::random();
+        return view('locations.try-this', ['location' => $location]);
+
+    }
 }
