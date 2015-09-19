@@ -65,7 +65,6 @@ class PhysiciansController extends ApiController
                     ->orderBy('distance', 'asc')
                     ->get();
                 DB::setFetchMode(\PDO::FETCH_CLASS);
-
             } else  {
                 DB::setFetchMode(\PDO::FETCH_ASSOC);
                 $physicians = DB::table('physicians')
@@ -75,15 +74,16 @@ class PhysiciansController extends ApiController
                     ->orderBy('distance', 'asc')
                     ->get();
                 DB::setFetchMode(\PDO::FETCH_CLASS);
-
             } 
+
             if (! empty($physicians)) {
                 return $this->respond([
                     'meta' => [
                         'city' => $request->city,
                         'state' => $request->state,
                         'zip' => $request->zip,
-                        'specialty' => $request->specialty,
+                        'specialty' => 
+                            $request->s_code ? $request->specialty : null,
                         'count' => count($physicians)
                     ],
                     'data' => $this->physicianTransformer
@@ -160,4 +160,5 @@ class PhysiciansController extends ApiController
 
         return $haversineSelect;
     }
+
 }
