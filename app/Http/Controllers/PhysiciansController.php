@@ -51,7 +51,6 @@ class PhysiciansController extends ApiController
     {
         //\Debugbar::disable();
         $distance = 25;
-
         $haversineSelectStmt = $this->haversineSelect($request->lat, $request->lon);
         //if ($request->ajax()) {
 
@@ -76,14 +75,18 @@ class PhysiciansController extends ApiController
                 DB::setFetchMode(\PDO::FETCH_CLASS);
             } 
 
+            // TODO DRY up meta block
+
             if (! empty($physicians)) {
                 return $this->respond([
                     'meta' => [
                         'city' => $request->city,
                         'state' => $request->state,
-                        'zip' => $request->zip,
+                        'zip' => $request->zip ? $request->zip : null,
                         'specialty' => 
                             $request->s_code ? $request->specialty : null,
+                        's_code' => 
+                            $request->s_code ? $request->s_code : null,
                         'count' => count($physicians)
                     ],
                     'data' => $this->physicianTransformer
@@ -96,8 +99,11 @@ class PhysiciansController extends ApiController
                 'meta' => [
                     'city' => $request->city,
                     'state' => $request->state,
-                    'zip' => $request->zip,
-                    'specialty' => $request->specialty,
+                    'zip' => $request->zip ? $request->zip : null,
+                    'specialty' => 
+                        $request->s_code ? $request->specialty : null,
+                    's_code' => 
+                        $request->s_code ? $request->s_code : null,
                     'count' => count($physicians)
                 ],
                 'error' => [
