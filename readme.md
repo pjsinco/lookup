@@ -323,3 +323,5 @@ locations table
     * Add a minus sign to the longitude of one of the ZIPs for Lincoln, NE
         * That's an error in the original database file
 
+######Sat Sep 19 08:09:56 2015 CDT
+* [Calculate distance between 2 coordinate](http://www.geodatasource.com/developers/php)

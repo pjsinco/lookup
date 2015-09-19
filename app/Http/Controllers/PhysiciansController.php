@@ -38,7 +38,6 @@ class PhysiciansController extends ApiController
         return $this->respond([
             'data' => $this->physicianTransformer->transform($physician)
         ]);
-
     }
 
     /**
@@ -50,7 +49,7 @@ class PhysiciansController extends ApiController
      */
     public function search(Request $request)
     {
-        \Debugbar::disable();
+        //\Debugbar::disable();
         $distance = 25;
 
         $haversineSelectStmt = $this->haversineSelect($request->lat, $request->lon);
@@ -151,8 +150,8 @@ class PhysiciansController extends ApiController
      * @param string 
      * @return string
      */
-    public function haversineSelect($lat, $lon) {
-
+    public function haversineSelect($lat, $lon) 
+    {
         $haversineSelect  = "*, (3959 * acos( cos( radians(" . $lat;
         $haversineSelect .= ") ) * cos( radians( lat ) ) * ";
         $haversineSelect .= "cos( radians( lon ) - radians(" . $lon;

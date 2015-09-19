@@ -41,6 +41,7 @@ class PhysicianTransformer extends Transformer
             'abms_cert' => $phys['ABMS'],
             'lat' => $phys['lat'],
             'lon' => $phys['lon'],
+            'distance' => $phys['distance'],
         ];
 
     }
