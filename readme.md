@@ -313,5 +313,13 @@ locations table
 > A simple way of authenticating your APIs with API keys using Laravel. 
 
 
-Tue Sep 15 06:49:46 2015 CDT
+######Tue Sep 15 06:49:46 2015 CDT
 * TutsPlus: [Laravel 4: A Start at a RESTful API (Updated)](http://code.tutsplus.com/tutorials/laravel-4-a-start-at-a-restful-api-updated--net-29785)
+
+######Fri Sep 18 19:07:11 2015 CDT
+* Changes to locations-2015-08-26.csv:
+    * Remove 20252--Washington, D.C.
+        * That's Smokey the Bear's ZIP code
+    * Add a minus sign to the longitude of one of the ZIPs for Lincoln, NE
+        * That's an error in the original database file
+
