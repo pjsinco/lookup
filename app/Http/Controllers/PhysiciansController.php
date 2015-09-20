@@ -54,7 +54,7 @@ class PhysiciansController extends ApiController
         $haversineSelectStmt = $this->haversineSelect($request->lat, $request->lon);
         //if ($request->ajax()) {
 
-            if (!$request->has('s_code')) {
+            if (!$request->has('code')) {
                 DB::setFetchMode(\PDO::FETCH_ASSOC);
                 $physicians = DB::table('physicians')
                     ->select(DB::raw($haversineSelectStmt))
@@ -68,7 +68,7 @@ class PhysiciansController extends ApiController
                 DB::setFetchMode(\PDO::FETCH_ASSOC);
                 $physicians = DB::table('physicians')
                     ->select(DB::raw($haversineSelectStmt))
-                    ->where('PrimaryPracticeFocusCode', '=', $request->s_code )
+                    ->where('PrimaryPracticeFocusCode', '=', $request->code )
                     ->having('distance', '<', $distance)
                     ->orderBy('distance', 'asc')
                     ->get();
@@ -84,9 +84,9 @@ class PhysiciansController extends ApiController
                         'state' => $request->state,
                         'zip' => $request->zip ? $request->zip : null,
                         'specialty' => 
-                            $request->s_code ? $request->specialty : null,
-                        's_code' => 
-                            $request->s_code ? $request->s_code : null,
+                            $request->code ? $request->specialty : null,
+                        'code' => 
+                            $request->code ? $request->code : null,
                         'count' => count($physicians)
                     ],
                     'data' => $this->physicianTransformer
@@ -101,9 +101,9 @@ class PhysiciansController extends ApiController
                     'state' => $request->state,
                     'zip' => $request->zip ? $request->zip : null,
                     'specialty' => 
-                        $request->s_code ? $request->specialty : null,
-                    's_code' => 
-                        $request->s_code ? $request->s_code : null,
+                        $request->code ? $request->specialty : null,
+                    'code' => 
+                        $request->code ? $request->code : null,
                     'count' => count($physicians)
                 ],
                 'error' => [
