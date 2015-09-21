@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 
 use App\Location;
+use App\Specialty;
 use Response;
 use Illuminate\Database\Eloquent\Collection;
 use DB;
@@ -40,6 +41,83 @@ class PhysiciansController extends ApiController
         ]);
     }
 
+    private function parseQField()
+    {
+        
+    }
+
+    private function isSpecialty()
+    {
+
+    }
+
+    /**
+     * Search for a specialty. Returns an array representation of the
+     * Specialty model, or false if it's not found.
+     *
+     * @param string
+     * @return instance of Specialty, or false
+     */
+    private function getSpecialty($query)
+    {
+        $query = trim(strtolower($query));
+        $specialty = Specialty::where('full', 'like', $query)->get()->first();
+        if (!empty($specialty)) {
+            return $specialty;
+        } 
+
+        return false;
+    }
+
+    /**
+     * Search for physicians who practice a certain specialty.
+     * 
+     * @param Request
+     * @param Specialty
+     * @return Array
+     */
+    private function searchWithSpecialty(Request $request, Specialty $specialty)
+    {
+        $distance = $request->distance ? $request->distance : 25;
+        $haversineSelectStmt = $this->haversineSelect($request->lat, $request->lon);
+
+        DB::setFetchMode(\PDO::FETCH_ASSOC);
+        $physicians = DB::table('physicians')
+            ->select(DB::raw($haversineSelectStmt))
+            ->where('PrimaryPracticeFocusCode', '=', $specialty->code )
+            ->having('distance', '<', $distance)
+            ->orderBy('distance', 'asc')
+            ->get();
+        DB::setFetchMode(\PDO::FETCH_CLASS);
+
+        return $physicians;
+    }
+
+    /**
+     * Search for physicians by first or last name.
+     * 
+     * @param Request
+     * @param Specialty
+     * @return Array
+     */
+    private function searchWithName(Request $request)
+    {
+        $distance = $request->distance ? $request->distance : 25;
+        $haversineSelectStmt = $this->haversineSelect($request->lat, $request->lon);
+
+        DB::setFetchMode(\PDO::FETCH_ASSOC);
+        $physicians = DB::table('physicians')
+            ->select(DB::raw($haversineSelectStmt))
+            ->where('last_name', 'like', $request->q . '%' )
+            ->orWhere('first_name', 'like', $request->q . '%' )
+            ->having('distance', '<', $distance)
+            ->orderBy('distance', 'asc')
+            ->get();
+        DB::setFetchMode(\PDO::FETCH_CLASS);
+
+        return $physicians;
+    }
+
     /**
      * Search for a physician. 
      *
@@ -50,30 +128,54 @@ class PhysiciansController extends ApiController
     public function search(Request $request)
     {
         //\Debugbar::disable();
-        $distance = 25;
-        $haversineSelectStmt = $this->haversineSelect($request->lat, $request->lon);
+
+        if ($request->q != '') {
+            $specialty = $this->getSpecialty($request->q);
+        } else {
+            $specialty = null;
+        }
+
+
+        if ($specialty) {
+            $physicians = $this->searchWithSpecialty($request, $specialty);
+        } else if ($request->q != '') {
+            $physicians = $this->searchWithName($request);
+        } else {
+            $distance = $request->distance ? $request->distance : 25;
+            $haversineSelectStmt = $this->haversineSelect($request->lat, $request->lon);
+
+            DB::setFetchMode(\PDO::FETCH_ASSOC);
+            $physicians = DB::table('physicians')
+                ->select(DB::raw($haversineSelectStmt))
+                ->where('last_name', 'like', $request->name . '%')
+                ->orWhere('first_name', 'like', $request->name . '%')
+                ->having('distance', '<', $distance)
+                ->orderBy('distance', 'asc')
+                ->get();
+            DB::setFetchMode(\PDO::FETCH_CLASS);
+        }
         //if ($request->ajax()) {
 
-            if (!$request->has('code')) {
-                DB::setFetchMode(\PDO::FETCH_ASSOC);
-                $physicians = DB::table('physicians')
-                    ->select(DB::raw($haversineSelectStmt))
-                    ->where('last_name', 'like', $request->name . '%')
-                    ->orWhere('first_name', 'like', $request->name . '%')
-                    ->having('distance', '<', $distance)
-                    ->orderBy('distance', 'asc')
-                    ->get();
-                DB::setFetchMode(\PDO::FETCH_CLASS);
-            } else  {
-                DB::setFetchMode(\PDO::FETCH_ASSOC);
-                $physicians = DB::table('physicians')
-                    ->select(DB::raw($haversineSelectStmt))
-                    ->where('PrimaryPracticeFocusCode', '=', $request->code )
-                    ->having('distance', '<', $distance)
-                    ->orderBy('distance', 'asc')
-                    ->get();
-                DB::setFetchMode(\PDO::FETCH_CLASS);
-            } 
+//            if (!$request->has('code')) {
+//                DB::setFetchMode(\PDO::FETCH_ASSOC);
+//                $physicians = DB::table('physicians')
+//                    ->select(DB::raw($haversineSelectStmt))
+//                    ->where('last_name', 'like', $request->name . '%')
+//                    ->orWhere('first_name', 'like', $request->name . '%')
+//                    ->having('distance', '<', $distance)
+//                    ->orderBy('distance', 'asc')
+//                    ->get();
+//                DB::setFetchMode(\PDO::FETCH_CLASS);
+//            } else  {
+//                DB::setFetchMode(\PDO::FETCH_ASSOC);
+//                $physicians = DB::table('physicians')
+//                    ->select(DB::raw($haversineSelectStmt))
+//                    ->where('PrimaryPracticeFocusCode', '=', $request->code )
+//                    ->having('distance', '<', $distance)
+//                    ->orderBy('distance', 'asc')
+//                    ->get();
+//                DB::setFetchMode(\PDO::FETCH_CLASS);
+//            } 
 
             // TODO DRY up meta block
 
@@ -84,9 +186,10 @@ class PhysiciansController extends ApiController
                         'state' => $request->state,
                         'zip' => $request->zip ? $request->zip : null,
                         'specialty' => 
-                            $request->code ? $request->specialty : null,
-                        'code' => 
-                            $request->code ? $request->code : null,
+                            !empty($specialty) ? $specialty->full : null,
+                        'q' => $request->q,
+                        //'code' => 
+                            //$request->code ? $request->code : null,
                         'count' => count($physicians)
                     ],
                     'data' => $this->physicianTransformer
@@ -101,9 +204,10 @@ class PhysiciansController extends ApiController
                     'state' => $request->state,
                     'zip' => $request->zip ? $request->zip : null,
                     'specialty' => 
-                        $request->code ? $request->specialty : null,
-                    'code' => 
-                        $request->code ? $request->code : null,
+                        !empty($specialty) ? $specialty->full : null,
+                    'q' => $request->q,
+                    //'code' => 
+                        //$request->code ? $request->code : null,
                     'count' => count($physicians)
                 ],
                 'error' => [
