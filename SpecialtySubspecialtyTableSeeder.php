@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class SpecialtyTableSeeder extends Seeder
+class SpecialtySubspecialtyTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,13 +11,11 @@ class SpecialtyTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        DB::table('specialties')->truncate();
+        DB::table('specialty_subspecialty')->truncate();
 
-        $specialties = $this->getCsv('specialties-all-with-ellens-full-names.csv');
+        $specialties = $this->getCsv('mapping.csv');
 
         $this->seedTable($specialties);
-        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 
     /**
@@ -30,8 +28,8 @@ class SpecialtyTableSeeder extends Seeder
     {
         foreach ($data as $lineIndex => $row) {
             $specialty = App\Specialty::create([
-                'code' => $row[0],
-                'full' => $row[1],
+                'specialty_id' => $row[0],
+                'subspecialty_id' => $row[1],
             ]);
         }
     }
@@ -51,5 +49,5 @@ class SpecialtyTableSeeder extends Seeder
 
         return $csv->query();
     }
-
 }
+

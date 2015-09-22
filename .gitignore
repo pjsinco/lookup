@@ -7,6 +7,8 @@ Homestead.yaml
 /database/seeds/data/zips-imprecise-lat-lon.csv
 /database/seeds/data/cityzip.csv
 /database/seeds/data/finda*.csv
+/database/seeds/data/*.csv
+/database/seeds/data/old
 /database/seeds/data/*premium*
 /database/seeds/data/locations*
 /database/seeds/data/geocoded
