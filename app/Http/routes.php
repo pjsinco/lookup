@@ -51,6 +51,11 @@ Route::group(['prefix' => 'api/v1'], function() {
 
 Route::get('physicians/search', 'PhysiciansController@search');
 
+Route::post('physician', 'PhysiciansController@store');
+//Route::get('physician/{id}', 'PhysiciansController@show');
+Route::get('physician/{id}/edit', 'PhysiciansController@edit');
+Route::patch('physician/{id}', 'PhysiciansController@update');
+
 Route::get('test/mssql', function() {
 
     $link = mssql_connect('sql05-1.aoanet.local', 'psinco_ro', 'Read5Only');

@@ -13,6 +13,7 @@ class CreatePhysiciansTable extends Migration
     public function up()
     {
         Schema::create('physicians', function (Blueprint $table) {
+            $table->timestamps();
             $table->increments('id');
             $table->string('aoa_mem_id');
             $table->string('full_name');

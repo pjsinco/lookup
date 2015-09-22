@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 
+use App\Physician;
 use App\Location;
 use App\Specialty;
 use Response;
@@ -328,6 +329,24 @@ class PhysiciansController extends ApiController
         $haversineSelect .= "* sin( radians( lat ) ) ) ) AS distance";
 
         return $haversineSelect;
+    }
+
+    public function store()
+    {
+        
+    }
+
+    public function edit($id)
+    {
+        $physician = Physician::findOrFail($id);
+       
+        return view('physician.edit') 
+            ->with('physician', $physician);
+    }
+
+    public function update()
+    {
+
     }
 
 }
