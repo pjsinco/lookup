@@ -325,3 +325,6 @@ locations table
 
 ######Sat Sep 19 08:09:56 2015 CDT
 * [Calculate distance between 2 coordinate](http://www.geodatasource.com/developers/php)
+
+Tue Sep 22 04:58:30 2015 CDT
+* Blog: [LARAVEL – MODEL RELATIONSHIP TO ITSELF](http://heera.it/laravel-model-relationship#.VgEmWiBViko)
