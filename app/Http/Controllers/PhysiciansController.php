@@ -188,8 +188,6 @@ class PhysiciansController extends ApiController
                         'specialty' => 
                             !empty($specialty) ? $specialty->full : null,
                         'q' => $request->q,
-                        //'code' => 
-                            //$request->code ? $request->code : null,
                         'count' => count($physicians)
                     ],
                     'data' => $this->physicianTransformer
@@ -206,8 +204,6 @@ class PhysiciansController extends ApiController
                     'specialty' => 
                         !empty($specialty) ? $specialty->full : null,
                     'q' => $request->q,
-                    //'code' => 
-                        //$request->code ? $request->code : null,
                     'count' => count($physicians)
                 ],
                 'error' => [
