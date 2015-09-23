@@ -328,3 +328,7 @@ locations table
 
 Tue Sep 22 04:58:30 2015 CDT
 * Blog: [LARAVEL – MODEL RELATIONSHIP TO ITSELF](http://heera.it/laravel-model-relationship#.VgEmWiBViko)
+
+#####Wed Sep 23 05:13:17 2015 CDT
+* Github: [jwt-auth](https://github.com/tymondesigns/jwt-auth/wiki)
+    * jwt-auth provides a simple means of authentication within Laravel using JSON Web Tokens (spec)

@@ -13,6 +13,13 @@ Route::get('try-this-one', 'LocationsController@tryThisOne');
 Route::group(['prefix' => 'api/v1'], function() {
 
     /**
+     * Authentication
+     *
+     */
+    Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
+    Route::post('authenticate', 'AuthenticateController@authenticate');
+
+    /**
      * Locations
      *
      */
