@@ -25,11 +25,18 @@ class SpecialtySubspecialtyTableSeeder extends Seeder
     private function seedTable($data)
     {
         foreach ($data as $lineIndex => $row) {
-            // TODO we don't want to create a Specialty
-            $specialty = App\Specialty::create([
-                'specialty_id' => $row[0],
-                'subspecialty_id' => $row[1],
-            ]);
+            try {
+                $specialty = App\Specialty::find($row[0]);
+                $subspecialty = App\Specialty::find($row[1]);
+                DB::table('specialty_subspecialty')->insert (
+                    [
+                        'specialty_id' => $specialty->code,
+                        'subspecialty_id' => $subspecialty->code,
+                    ]
+                );
+            } catch (ErrorException $ee) {
+                
+            }
         }
     }
 
