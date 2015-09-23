@@ -35,6 +35,7 @@ class PhysiciansController extends ApiController
     public function __construct(PhysicianTransformer $physicianTransformer)
     {
         $this->physicianTransformer = $physicianTransformer;
+        //$this->middleware('jwt.auth', ['only' => ['show', 'search']]);
     }
 
     /**
