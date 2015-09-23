@@ -332,3 +332,6 @@ Tue Sep 22 04:58:30 2015 CDT
 #####Wed Sep 23 05:13:17 2015 CDT
 * Github: [jwt-auth](https://github.com/tymondesigns/jwt-auth/wiki)
     * jwt-auth provides a simple means of authentication within Laravel using JSON Web Tokens (spec)
+
+* Github: [ellipsesynergie/api-response](https://github.com/ellipsesynergie/api-response)
+    * Simple package to handle response properly in your API.
