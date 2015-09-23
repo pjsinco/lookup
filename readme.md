@@ -37,6 +37,20 @@ locations table
 * In the FindADO query, can we not concatenate fellow designations onto the `designation` field?
         * See Dr. Hubka: "DO, FACOOG, FACOG,CS"
 
+#Deployment troubleshooting
+* Generate an app key
+```
+php artisan key:generate
+```
+* Change permissions on storage
+```
+chmod 777 storage/
+```
+* If needed, change permissions on views
+```
+chmod 777 storage/framework/views/
+```
+
 #dboFindaDO
 * Fri Jul 31 11:50:51 2015 CDT 
     * keeping field names the same but for one:
@@ -364,3 +378,4 @@ Tue Sep 22 04:58:30 2015 CDT
 
 * Github: [HTTP Basic Authentication for Backbone.](https://github.com/fiznool/backbone.basicauth)
     > This plugin enables access to remote resources which are protected by HTTP Basic Authentication through your Backbone Models and Collections.
+
