@@ -331,7 +331,36 @@ Tue Sep 22 04:58:30 2015 CDT
 
 #####Wed Sep 23 05:13:17 2015 CDT
 * Github: [jwt-auth](https://github.com/tymondesigns/jwt-auth/wiki)
-    * jwt-auth provides a simple means of authentication within Laravel using JSON Web Tokens (spec)
+    > jwt-auth provides a simple means of authentication within Laravel using JSON Web Tokens (spec)
 
 * Github: [ellipsesynergie/api-response](https://github.com/ellipsesynergie/api-response)
-    * Simple package to handle response properly in your API.
+    > Simple package to handle response properly in your API.
+
+* Github: [Laravel 5 / Angular example with JSON Web Token authentication](https://github.com/ttkalec/laravel5-angular-jwt)
+
+* Blog: [Sample Token Authentication in jQuery](http://todo.ly/apiwiki/?authentication/token-authentication)
+    ```js
+    function _ajax_request(url, data, callback, type, method)
+    {    
+        if (jQuery.isFunction(data))
+        {
+            callback = data;
+            data = {};
+        }
+        return jQuery.ajax({
+            type: method,
+            url: url,
+            data: data,
+            beforeSend : function(req) {
+                req.setRequestHeader(‘Token’, "40a6c903562946c8a32cf752011e8f11");
+            },
+            success: callback,
+            dataType: type
+        });
+    }
+    ```
+
+* SO: [Send token with every backbone sync request](http://stackoverflow.com/questions/14203928/send-token-with-every-backbone-sync-request)
+
+* Github: [HTTP Basic Authentication for Backbone.](https://github.com/fiznool/backbone.basicauth)
+    > This plugin enables access to remote resources which are protected by HTTP Basic Authentication through your Backbone Models and Collections.
