@@ -65,7 +65,9 @@ Route::patch('physician/{id}', 'PhysiciansController@update');
 
 Route::get('test/mssql', function() {
 
-    $link = mssql_connect('sql05-1.aoanet.local', 'psinco_ro', 'Read5Only');
+    $username = env('MSSQL_USER');
+    $password = env('MSSQL_PASSWORD');
+    $link = mssql_connect('sql05-1.aoanet.local', $username, $password);
      
     if (!$link)
         die('Unable to connect!');
