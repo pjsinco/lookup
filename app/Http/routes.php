@@ -62,27 +62,3 @@ Route::post('physician', 'PhysiciansController@store');
 //Route::get('physician/{id}', 'PhysiciansController@show');
 Route::get('physician/{id}/edit', 'PhysiciansController@edit');
 Route::patch('physician/{id}', 'PhysiciansController@update');
-
-Route::get('test/mssql', function() {
-
-    $username = env('MSSQL_USER');
-    $password = env('MSSQL_PASSWORD');
-    $link = mssql_connect('sql05-1.aoanet.local', $username, $password);
-     
-    if (!$link)
-        die('Unable to connect!');
-     
-    if (!mssql_select_db('imis', $link))
-        die('Unable to select database!');
-     
-    $result = mssql_query("SELECT full_name, address_1 FROM imis.dbo.vfindado WHERE last_name like 'Hub%'");
-     
-    while ($row = mssql_fetch_array($result)) {
-        var_dump($row);
-    }
-     
-    mssql_free_result($result);
-
-});
-
-
